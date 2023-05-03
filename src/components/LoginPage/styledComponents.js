@@ -4,8 +4,9 @@ export const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  flex: 1;
   font-family: 'Roboto';
+  min-height: 90vh;
 `
 export const CustomContainer = styled.form`
   display: flex;

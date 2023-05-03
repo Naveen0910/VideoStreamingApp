@@ -9,6 +9,7 @@ import {
   CustomImage,
   CustomInput,
 } from './styledComponents'
+import Navbar from '../Navbar'
 
 const LoginPage = () => {
   const history = useHistory()
@@ -65,35 +66,38 @@ const LoginPage = () => {
   }
 
   return (
-    <MainContainer>
-      <CustomContainer
-        onSubmit={onFormSubmission}
-        direction="column"
-        pad="35px"
-      >
-        <CustomImage
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-          alt="logo"
-        />
-        <InputContainer onChange={onChangeUsername} direction="column">
-          <label htmlFor="username">USERNAME</label>
-          <CustomInput type="text" id="username" />
-        </InputContainer>
-        <InputContainer onChange={onChangePassword} direction="column">
-          <label htmlFor="password">PASSWORD</label>
-          <CustomInput
-            type={showpassword ? 'text' : 'password'}
-            id="password"
+    <>
+      <Navbar />
+      <MainContainer>
+        <CustomContainer
+          onSubmit={onFormSubmission}
+          direction="column"
+          pad="35px"
+        >
+          <CustomImage
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+            alt="logo"
           />
-        </InputContainer>
-        <InputContainer alignItems="center" direction="row">
-          <CustomInput type="checkbox" id="checkbox" onChange={onChecked} />
-          <label htmlFor="checkbox">showpassword</label>
-        </InputContainer>
-        <CustomButton type="submit">Login</CustomButton>
-        <p style={alertStyle}>{showErrMsg ? `*${errorMsg}` : null}</p>
-      </CustomContainer>
-    </MainContainer>
+          <InputContainer onChange={onChangeUsername} direction="column">
+            <label htmlFor="username">USERNAME</label>
+            <CustomInput type="text" id="username" />
+          </InputContainer>
+          <InputContainer onChange={onChangePassword} direction="column">
+            <label htmlFor="password">PASSWORD</label>
+            <CustomInput
+              type={showpassword ? 'text' : 'password'}
+              id="password"
+            />
+          </InputContainer>
+          <InputContainer alignItems="center" direction="row">
+            <CustomInput type="checkbox" id="checkbox" onChange={onChecked} />
+            <label htmlFor="checkbox">showpassword</label>
+          </InputContainer>
+          <CustomButton type="submit">Login</CustomButton>
+          <p style={alertStyle}>{showErrMsg ? `*${errorMsg}` : null}</p>
+        </CustomContainer>
+      </MainContainer>
+    </>
   )
 }
 
