@@ -10,6 +10,7 @@ import {
   CustomInput,
 } from './styledComponents'
 import Navbar from '../Navbar'
+import Sidebar from '../Sidebar'
 
 const LoginPage = () => {
   const history = useHistory()
