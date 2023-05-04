@@ -1,6 +1,9 @@
 import {useState, useEffect} from 'react'
 import {Switch, Route} from 'react-router-dom'
+
 import LoginPage from './components/LoginPage/index'
+import Home from './components/Home'
+import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 const App = () => {
@@ -9,6 +12,7 @@ const App = () => {
   return (
     <Switch>
       <Route exact path="/login" component={LoginPage} />
+      <ProtectedRoute exact path="/" component={Home} />
     </Switch>
   )
 }

@@ -6,7 +6,7 @@ export const MainContainer = styled.div`
   align-items: center;
   flex: 1;
   font-family: 'Roboto';
-  min-height: 90vh;
+  min-height: 100vh;
 `
 export const CustomContainer = styled.form`
   display: flex;
@@ -15,6 +15,7 @@ export const CustomContainer = styled.form`
   border-radius: 15px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   min-width: 30%;
+  height: 55vh;
 `
 export const InputContainer = styled.div`
   display: flex;
