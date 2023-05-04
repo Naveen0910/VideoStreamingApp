@@ -1,10 +1,14 @@
 import {useState, useEffect} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import {Link} from 'react-router-dom'
+import {formatDistanceToNow} from 'date-fns'
 import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
 
+import VideoComponent from '../VideoComponent'
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
+import './index.css'
 import {
   Banner,
   Logo,
@@ -12,6 +16,11 @@ import {
   CustomButton,
   MainContainer,
   SubContainer,
+  CloseButton,
+  RightSectionContainer,
+  UnorderedList,
+  LoadingContainer,
+  ViewsContainer,
 } from './styledComponents'
 
 const fetchConstants = {
@@ -21,12 +30,16 @@ const fetchConstants = {
   failed: 'FAILED',
 }
 
+const failedViewImage =
+  'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+
 const Home = () => {
   const [apiResponse, setApiResponse] = useState({
     status: fetchConstants.initial,
     data: null,
     errMsg: null,
   })
+  const [close, setClose] = useState(false)
 
   const onSuccessfulFetch = Data => {
     const updatedData = Data.videos.map(eachVideo => ({
@@ -38,7 +51,6 @@ const Home = () => {
       thumbNailUrl: eachVideo.thumbnail_url,
       viewCount: eachVideo.view_count,
     }))
-    console.log(updatedData)
     setApiResponse(prevApiDetails => ({
       ...prevApiDetails,
       status: fetchConstants.success,
@@ -81,15 +93,13 @@ const Home = () => {
     fetchData()
   }, [])
 
-  const renderLoadingView = () => (
-    <div>
-      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
-    </div>
-  )
+  const onClickClose = () => {
+    setClose(true)
+  }
 
   const bannerElement = () => (
     <Banner
-      width="80%"
+      width="100%"
       imageUrl="https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png"
       direction="row"
       justifyContent="space-between"
@@ -101,33 +111,56 @@ const Home = () => {
           alt="logo"
         />
         <Para>Buy Nxt Watch Premium prepaid plans with UPI </Para>
-        <CustomButton>GET IT NOW</CustomButton>
+        <CustomButton width="30%">GET IT NOW</CustomButton>
       </Banner>
-      <AiOutlineClose />
+      <CloseButton>
+        <AiOutlineClose onClick={onClickClose} />
+      </CloseButton>
     </Banner>
   )
 
-  //   const renderVideoContainer = () => {
-  //     const {status} = apiResponse
+  /* Different Views Start */
+  const renderSuccessView = () => {
+    const {data} = apiResponse
+    return (
+      <UnorderedList close={close}>
+        {apiResponse.data.map(eachData => (
+          <VideoComponent key={eachData.id} reqDetails={eachData} />
+        ))}
+      </UnorderedList>
+    )
+  }
 
-  //     switch (status) {
-  //       case fetchConstants.loading:
-  //         return renderLoadingView()
-  //       case fetchConstants.success:
-  //         return renderSuccessView()
-  //       case fetchConstants.failure:
-  //         return renderFailureView()
-  //       default:
-  //         return null
-  //     }
-  //   }
+  const renderLoadingView = () => (
+    <LoadingContainer>
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </LoadingContainer>
+  )
+
+  const renderVideoContainer = () => {
+    const {status} = apiResponse
+
+    switch (status) {
+      case fetchConstants.loading:
+        return renderLoadingView()
+      case fetchConstants.success:
+        return renderSuccessView()
+      // case fetchConstants.failure:
+      //   return renderFailureView()
+      default:
+        return null
+    }
+  }
 
   return (
-    <MainContainer>
+    <MainContainer height="100vh">
       <Navbar />
       <SubContainer>
         <Sidebar />
-        {bannerElement()}
+        <RightSectionContainer>
+          {!close && bannerElement()}
+          <ViewsContainer>{renderVideoContainer()}</ViewsContainer>
+        </RightSectionContainer>
       </SubContainer>
     </MainContainer>
   )

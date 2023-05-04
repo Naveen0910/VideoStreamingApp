@@ -6,7 +6,6 @@ export const NavContainer = styled.div`
   padding: 20px;
   height: 10vh;
   align-items: center;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 `
 
 export const CustomContainer = styled.div`
