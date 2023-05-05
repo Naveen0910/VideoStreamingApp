@@ -44,6 +44,9 @@ const Home = () => {
   })
   const [close, setClose] = useState(false)
   const [searchInput, setSearchInput] = useState('')
+  const [fetchUrl, setFetchUrl] = useState(
+    `https://apis.ccbp.in/videos/all?search=${searchInput}`,
+  )
 
   const onSuccessfulFetch = Data => {
     const updatedData = Data.videos.map(eachVideo => ({
@@ -71,37 +74,52 @@ const Home = () => {
     }))
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setApiResponse({
-        status: fetchConstants.loading,
-        data: null,
-        errMsg: null,
-      })
-      const Url = `https://apis.ccbp.in/videos/all?search=`
-      const jwtToken = Cookies.get('jwt_token')
-      const options = {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-        method: 'GET',
-      }
-      try {
-        const response = await fetch(Url, options)
-        const data = await response.json()
-        if (response.ok === true) {
-          onSuccessfulFetch(data)
-        } else {
-          onFailureFetch(data)
-        }
-      } catch (error) {
-        console.error(error)
-        onFailureFetch(error.message)
-      }
+  const fetchData = async () => {
+    setApiResponse({
+      status: fetchConstants.loading,
+      data: null,
+      errMsg: null,
+    })
+    const Url = fetchUrl
+    const jwtToken = Cookies.get('jwt_token')
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
     }
+    try {
+      const response = await fetch(Url, options)
+      const data = await response.json()
+      if (response.ok === true) {
+        onSuccessfulFetch(data)
+      } else {
+        onFailureFetch(data)
+      }
+    } catch (error) {
+      console.error(error)
+      onFailureFetch(error.message)
+    }
+  }
 
+  useEffect(() => {
     fetchData()
   }, [])
+
+  //   Code regarding searching
+  const onChangeSearchInput = e => {
+    setSearchInput(e.target.value)
+  }
+
+  const onClickSearchIcon = () => {
+    setFetchUrl(`https://apis.ccbp.in/videos/all?search=${searchInput}`)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [fetchUrl])
+
+  // End of code regarding searching
 
   const onClickClose = () => {
     setClose(true)
@@ -131,22 +149,19 @@ const Home = () => {
   )
 
   /* Different Views Start */
-  const renderSuccessView = () => {
-    const {data} = apiResponse
-    return (
-      <VideosDisplaySection>
-        <SearchContainer>
-          <Searchbar type="search" />
-          <StyledSearchIcon />
-        </SearchContainer>
-        <UnorderedList close={close}>
-          {apiResponse.data.map(eachData => (
-            <VideoComponent key={eachData.id} reqDetails={eachData} />
-          ))}
-        </UnorderedList>
-      </VideosDisplaySection>
-    )
-  }
+  const renderSuccessView = () => (
+    <VideosDisplaySection>
+      <SearchContainer>
+        <Searchbar type="search" onChange={onChangeSearchInput} />
+        <StyledSearchIcon onClick={onClickSearchIcon} />
+      </SearchContainer>
+      <UnorderedList close={close}>
+        {apiResponse.data.map(eachData => (
+          <VideoComponent key={eachData.id} reqDetails={eachData} />
+        ))}
+      </UnorderedList>
+    </VideosDisplaySection>
+  )
 
   const renderLoadingView = () => (
     <LoadingContainer>

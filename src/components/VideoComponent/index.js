@@ -14,6 +14,7 @@ import {
   ViewsDate,
   Views,
   PublishedAt,
+  CustomLink,
 } from './styledComponent'
 
 const VideoComponent = props => {
@@ -27,12 +28,6 @@ const VideoComponent = props => {
     viewCount,
     publishedAt,
   } = reqDetails
-
-  const CustomLink = styled(Link)`
-    color: #333;
-    text-decoration: none;
-    }
-  `
 
   return (
     <StyledVideoComponent key={id}>

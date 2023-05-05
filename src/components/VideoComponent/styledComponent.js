@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 export const StyledVideoComponent = styled.li`
@@ -9,6 +10,11 @@ export const StyledVideoComponent = styled.li`
   max-height: 30%;
   background-color: #f9f9f9;
 `
+export const CustomLink = styled(Link)`
+    color: #333;
+    text-decoration: none;
+    }
+  `
 
 export const ThumbnailSection = styled.div`
   width: 100%;
