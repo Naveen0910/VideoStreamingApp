@@ -82,9 +82,10 @@ export const SearchContainer = styled.div`
 
 export const Searchbar = styled.input``
 
-export const StyledSearchIcon = styled(AiOutlineSearch)`
+export const SearchButton = styled.button`
   color: black;
   font-size: 20px;
   width: 4%;
   border: 1px solid #94a3b8;
+  data-testid="searchButton"
 `

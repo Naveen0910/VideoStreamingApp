@@ -22,8 +22,8 @@ import {
   ViewsContainer,
   VideosDisplaySection,
   Searchbar,
-  StyledSearchIcon,
   SearchContainer,
+  SearchButton,
 } from './styledComponents'
 
 const fetchConstants = {
@@ -153,7 +153,9 @@ const Home = () => {
     <VideosDisplaySection>
       <SearchContainer>
         <Searchbar type="search" onChange={onChangeSearchInput} />
-        <StyledSearchIcon onClick={onClickSearchIcon} />
+        <SearchButton data-testid="searchButton" onClick={onClickSearchIcon}>
+          <AiOutlineSearch />
+        </SearchButton>
       </SearchContainer>
       <UnorderedList close={close}>
         {apiResponse.data.map(eachData => (
