@@ -1,3 +1,4 @@
+import {AiOutlineSearch} from 'react-icons/ai'
 import styled from 'styled-components'
 
 export const Banner = styled.div`
@@ -64,9 +65,26 @@ export const UnorderedList = styled.ul`
   list-style: none;
   flex: 1;
   margin: 0px;
-  background-color: #f1f1f1;
   max-height: ${props => (props.close ? '90vh' : '70vh')};
   overflow-y: scroll;
   flex-wrap: wrap;
   padding-top: 10px;
+`
+export const VideosDisplaySection = styled.div`
+  background-color: #f1f1f1;
+  flex: 1;
+  padding-top: 5px;
+`
+
+export const SearchContainer = styled.div`
+  display: flex;
+`
+
+export const Searchbar = styled.input``
+
+export const StyledSearchIcon = styled(AiOutlineSearch)`
+  color: black;
+  font-size: 20px;
+  width: 4%;
+  border: 1px solid #94a3b8;
 `

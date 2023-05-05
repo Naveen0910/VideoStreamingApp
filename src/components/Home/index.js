@@ -8,7 +8,6 @@ import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
 import VideoComponent from '../VideoComponent'
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
-import './index.css'
 import {
   Banner,
   Logo,
@@ -21,6 +20,10 @@ import {
   UnorderedList,
   LoadingContainer,
   ViewsContainer,
+  VideosDisplaySection,
+  Searchbar,
+  StyledSearchIcon,
+  SearchContainer,
 } from './styledComponents'
 
 const fetchConstants = {
@@ -40,6 +43,7 @@ const Home = () => {
     errMsg: null,
   })
   const [close, setClose] = useState(false)
+  const [searchInput, setSearchInput] = useState('')
 
   const onSuccessfulFetch = Data => {
     const updatedData = Data.videos.map(eachVideo => ({
@@ -74,7 +78,7 @@ const Home = () => {
         data: null,
         errMsg: null,
       })
-      const Url = 'https://apis.ccbp.in/videos/all?search='
+      const Url = `https://apis.ccbp.in/videos/all?search=`
       const jwtToken = Cookies.get('jwt_token')
       const options = {
         headers: {
@@ -82,14 +86,20 @@ const Home = () => {
         },
         method: 'GET',
       }
-      const response = await fetch(Url, options)
-      const Data = await response.json()
-      if (response.ok === true) {
-        onSuccessfulFetch(Data)
-      } else {
-        onFailureFetch(Data)
+      try {
+        const response = await fetch(Url, options)
+        const data = await response.json()
+        if (response.ok === true) {
+          onSuccessfulFetch(data)
+        } else {
+          onFailureFetch(data)
+        }
+      } catch (error) {
+        console.error(error)
+        onFailureFetch(error.message)
       }
     }
+
     fetchData()
   }, [])
 
@@ -99,6 +109,7 @@ const Home = () => {
 
   const bannerElement = () => (
     <Banner
+      data-testid="banner"
       width="100%"
       imageUrl="https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png"
       direction="row"
@@ -123,17 +134,23 @@ const Home = () => {
   const renderSuccessView = () => {
     const {data} = apiResponse
     return (
-      <UnorderedList close={close}>
-        {apiResponse.data.map(eachData => (
-          <VideoComponent key={eachData.id} reqDetails={eachData} />
-        ))}
-      </UnorderedList>
+      <VideosDisplaySection>
+        <SearchContainer>
+          <Searchbar type="search" />
+          <StyledSearchIcon />
+        </SearchContainer>
+        <UnorderedList close={close}>
+          {apiResponse.data.map(eachData => (
+            <VideoComponent key={eachData.id} reqDetails={eachData} />
+          ))}
+        </UnorderedList>
+      </VideosDisplaySection>
     )
   }
 
   const renderLoadingView = () => (
     <LoadingContainer>
-      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+      <Loader type="ThreeDots" color="blue" height="50" width="50" />
     </LoadingContainer>
   )
 
