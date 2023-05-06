@@ -23,12 +23,16 @@ import {
   ReactPlayers,
   ButtonsContainer,
 } from './styledComponents'
+import SavedVideosContext from '../../context/SavedVideosContext/SavedVideosContext'
 
 const VideoItemDetails = ({match}) => {
   const [videoData, setVideoData] = useState({})
   const [isLiked, setIsLiked] = useState(false)
   const [isDisliked, setIsDisliked] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
+  const [saveText, setSaveText] = useState('Save')
+
+  const {addToArray} = useContext(SavedVideosContext)
 
   const {params} = match
   const {id} = params
@@ -80,6 +84,8 @@ const VideoItemDetails = ({match}) => {
 
   const onClickSaved = () => {
     setIsSaved(!isSaved)
+    setSaveText('Saved')
+    addToArray(videoData)
   }
 
   const renderVideoDetails = () => (
@@ -128,7 +134,9 @@ const VideoItemDetails = ({match}) => {
                   className="like-button"
                 >
                   <AiFillSave className={isSaved ? 'active' : 'non-active'} />
-                  <p className={isSaved ? 'active' : 'non-active'}>Save</p>
+                  <p className={isSaved ? 'active' : 'non-active'}>
+                    {saveText}
+                  </p>
                 </LikeButton>
               </ButtonsContainer>
             </LikeDislikeContainer>
