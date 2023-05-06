@@ -29,8 +29,8 @@ class GamingVideos extends Component {
     return (
       <ul className="game-entire-list">
         {gameFetchedData.map(data => (
-          <CustomLink to={`/videos/${data.id}`}>
-            <li key={data.id} className="game-list-item">
+          <li key={data.id} className="game-list-item">
+            <CustomLink to={`/videos/${data.id}`}>
               <img
                 className="gaming-thumbnail"
                 alt="thumbnail"
@@ -40,8 +40,8 @@ class GamingVideos extends Component {
                 <p className="game-title">{data.title}</p>
                 <p className="game-view-count">{data.viewCount} views</p>
               </div>
-            </li>
-          </CustomLink>
+            </CustomLink>
+          </li>
         ))}
       </ul>
     )
