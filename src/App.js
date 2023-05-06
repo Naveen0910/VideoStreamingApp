@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 import TrendingVideos from './components/TrendingVideos'
 import GamingVideos from './components/GamingVideos'
+import VideoItemDetails from './components/VideoItemDetails'
 
 const App = () => {
   const [savedVideos, setSavedVideos] = useState([])
@@ -17,6 +18,7 @@ const App = () => {
       <ProtectedRoute exact path="/" component={Home} />
       <ProtectedRoute exact path="/trending" component={TrendingVideos} />
       <ProtectedRoute exact path="/gaming" component={GamingVideos} />
+      <ProtectedRoute exact path="/videos/:id" component={VideoItemDetails} />
     </Switch>
   )
 }

@@ -1,6 +1,4 @@
-import {Link} from 'react-router-dom'
 import {formatDistanceToNow} from 'date-fns'
-import styled from 'styled-components'
 import {
   StyledVideoComponent,
   ThumbnailSection,

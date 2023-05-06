@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Loader from 'react-loader-spinner'
+import {Link} from 'react-router-dom'
 
 export const StyledUnorderedList = styled.ul`
   display: flex;
@@ -11,6 +12,11 @@ export const StyledUnorderedList = styled.ul`
   max-height: 72vh;
   overflow-y: scroll;
 `
+export const CustomLink = styled(Link)`
+    color: #333;
+    text-decoration: none;
+    }
+  `
 
 export const StyledListItem = styled.li`
   display: flex;

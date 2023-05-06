@@ -23,6 +23,7 @@ import {
   StyledTrendingHeader,
   StyledTrendingTitle,
   ViewContainer,
+  CustomLink,
 } from './styledComponents'
 
 const failedViewImage =
@@ -45,26 +46,28 @@ const TrendingVideos = () => {
     <StyledUnorderedList>
       {fetchedData.map(data => (
         <StyledListItem key={data.id}>
-          <StyledThumbnail
-            className="trend-thumbnail"
-            alt="thumbnail"
-            src={data.thumbNailUrl}
-          />
-          <StyledInfoContainer>
-            <StyledTitle className="trend-title">{data.title}</StyledTitle>
-            <StyledChannelName className="trend-channel-name">
-              {data.channelName}
-            </StyledChannelName>
-            <StyledYearAndViews>
-              <StyledViewCount className="trend-viewcount">
-                {data.viewCount} views
-              </StyledViewCount>
-              <p>.</p>
-              <StyledPublishedDate className="trend-published-date">
-                {formatDistanceToNow(new Date(data.publishedAt))}
-              </StyledPublishedDate>
-            </StyledYearAndViews>
-          </StyledInfoContainer>
+          <CustomLink to={`/videos/${data.id}`}>
+            <StyledThumbnail
+              className="trend-thumbnail"
+              alt="thumbnail"
+              src={data.thumbNailUrl}
+            />
+            <StyledInfoContainer>
+              <StyledTitle className="trend-title">{data.title}</StyledTitle>
+              <StyledChannelName className="trend-channel-name">
+                {data.channelName}
+              </StyledChannelName>
+              <StyledYearAndViews>
+                <StyledViewCount className="trend-viewcount">
+                  {data.viewCount} views
+                </StyledViewCount>
+                <p>.</p>
+                <StyledPublishedDate className="trend-published-date">
+                  {formatDistanceToNow(new Date(data.publishedAt))}
+                </StyledPublishedDate>
+              </StyledYearAndViews>
+            </StyledInfoContainer>
+          </CustomLink>
         </StyledListItem>
       ))}
     </StyledUnorderedList>

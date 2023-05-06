@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 import './index.css'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
+import {CustomLink} from './styledComponents'
 
 const failedViewImage =
   'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
@@ -28,17 +29,19 @@ class GamingVideos extends Component {
     return (
       <ul className="game-entire-list">
         {gameFetchedData.map(data => (
-          <li key={data.id} className="game-list-item">
-            <img
-              className="gaming-thumbnail"
-              alt="thumbnail"
-              src={data.thumbNailUrl}
-            />
-            <div className="game-container">
-              <p className="game-title">{data.title}</p>
-              <p className="game-view-count">{data.viewCount} views</p>
-            </div>
-          </li>
+          <CustomLink to={`/videos/${data.id}`}>
+            <li key={data.id} className="game-list-item">
+              <img
+                className="gaming-thumbnail"
+                alt="thumbnail"
+                src={data.thumbNailUrl}
+              />
+              <div className="game-container">
+                <p className="game-title">{data.title}</p>
+                <p className="game-view-count">{data.viewCount} views</p>
+              </div>
+            </li>
+          </CustomLink>
         ))}
       </ul>
     )
