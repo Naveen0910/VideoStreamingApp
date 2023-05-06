@@ -5,12 +5,11 @@ import {Link} from 'react-router-dom'
 export const StyledUnorderedList = styled.ul`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 20px;
-  margin: 0;
   list-style-type: none;
   max-height: 72vh;
   overflow-y: scroll;
+  width: 1300px;
 `
 export const CustomLink = styled(Link)`
     color: #333;
