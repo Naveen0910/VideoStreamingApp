@@ -59,3 +59,15 @@ export const Views = styled.p`
 export const PublishedOn = styled.p`
   font-size: 14px;
 `
+export const NoVideosContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+`
+
+export const NoVideosImage = styled.img`
+height:50vh;
+width:50%:
+`

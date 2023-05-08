@@ -17,6 +17,8 @@ import {
   ViewsAndPubLishedContainer,
   Views,
   PublishedOn,
+  NoVideosContainer,
+  NoVideosImage,
 } from './styledComponents'
 
 const SavedVideos = () => {
@@ -46,7 +48,14 @@ const SavedVideos = () => {
         </UnorderedList>
       )
     }
-    return <p>Hello</p>
+    return (
+      <NoVideosContainer>
+        <NoVideosImage
+          alt="no saved videos"
+          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+        />
+      </NoVideosContainer>
+    )
   }
   return (
     <>
