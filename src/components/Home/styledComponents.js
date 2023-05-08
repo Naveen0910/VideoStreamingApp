@@ -53,6 +53,7 @@ export const LoadingContainer = styled.div`
   height: 100%;
   margin: 0px;
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
 `
@@ -111,7 +112,6 @@ export const FailureContainer = styled.div`
   align-items: center;
   width: 100%;
   flex: 1;
-  height: 100%;
 `
 
 export const FailureImage = styled.img`
