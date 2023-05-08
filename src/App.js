@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Switch, Route} from 'react-router-dom'
 
+import {VideosProvider} from './context/SavedVideosContext/SavedVideosContext'
 import LoginPage from './components/LoginPage/index'
 import Home from './components/Home'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -11,14 +12,16 @@ import VideoItemDetails from './components/VideoItemDetails'
 import SavedVideos from './components/SavedVideos'
 
 const App = () => (
-  <Switch>
-    <Route exact path="/login" component={LoginPage} />
-    <ProtectedRoute exact path="/" component={Home} />
-    <ProtectedRoute exact path="/trending" component={TrendingVideos} />
-    <ProtectedRoute exact path="/gaming" component={GamingVideos} />
-    <ProtectedRoute exact path="/videos/:id" component={VideoItemDetails} />
-    <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
-  </Switch>
+  <VideosProvider>
+    <Switch>
+      <Route exact path="/login" component={LoginPage} />
+      <ProtectedRoute exact path="/" component={Home} />
+      <ProtectedRoute exact path="/trending" component={TrendingVideos} />
+      <ProtectedRoute exact path="/gaming" component={GamingVideos} />
+      <ProtectedRoute exact path="/videos/:id" component={VideoItemDetails} />
+      <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
+    </Switch>
+  </VideosProvider>
 )
 
 export default App

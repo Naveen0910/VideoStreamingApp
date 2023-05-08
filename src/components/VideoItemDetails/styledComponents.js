@@ -29,7 +29,7 @@ export const VideoInfoContainer = styled.div`
   margin-top: 16px;
 `
 
-export const VideoTitle = styled.h1`
+export const VideoTitle = styled.p`
   font-size: 24px;
   font-weight: 600;
   margin: 0;
@@ -57,11 +57,11 @@ export const LikeButton = styled.button`
   margin-right: 16px;
 
   .active {
-    color: #4f46e5;
+    color: #2563eb;
   }
 
   .non-active {
-    color: gray;
+    color: #64748b;
   }
 `
 

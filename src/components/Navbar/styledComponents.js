@@ -6,7 +6,6 @@ export const NavContainer = styled.ul`
   padding: 10px;
   height: 10vh;
   align-items: center;
-  border: 2px solid red;
   margin-top: 0;
   margin-bottom: 0;
 `

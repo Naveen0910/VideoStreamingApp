@@ -1,8 +1,7 @@
 import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
-import ReactPlayer from 'react-player'
-import {formatDistanceToNow} from 'date-fns'
 import {AiOutlineLike, AiOutlineDislike, AiFillSave} from 'react-icons/ai'
+import {useParams} from 'react-router-dom'
 
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
@@ -25,7 +24,7 @@ import {
 } from './styledComponents'
 import SavedVideosContext from '../../context/SavedVideosContext/SavedVideosContext'
 
-const VideoItemDetails = ({match}) => {
+const VideoItemDetails = () => {
   const [videoData, setVideoData] = useState({})
   const [isLiked, setIsLiked] = useState(false)
   const [isDisliked, setIsDisliked] = useState(false)
@@ -34,10 +33,9 @@ const VideoItemDetails = ({match}) => {
 
   const {addToArray} = useContext(SavedVideosContext)
 
-  const {params} = match
-  const {id} = params
+  const {id} = useParams()
 
-  useEffect(() => {
+  const getVideoData = async () => {
     const videoDataUrl = `https://apis.ccbp.in/videos/${id}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -46,31 +44,28 @@ const VideoItemDetails = ({match}) => {
       },
       method: 'GET',
     }
-
-    const getVideoData = async () => {
-      const response = await fetch(videoDataUrl, options)
-      if (response.ok === true) {
-        const data = await response.json()
-        console.log(data)
-        const updatedData = {
-          name: data.video_details.channel.name,
-          profileImageUrl: data.video_details.channel.profile_image_url,
-          subscribersCount: data.video_details.channel.subscriber_count,
-          description: data.video_details.description,
-          id: data.video_details.id,
-          thumbnailUrl: data.video_details.thumbnail_url,
-          title: data.video_details.title,
-          videoUrl: data.video_details.video_url,
-          videoCount: data.video_details.view_count,
-          publishedAt: data.video_details.published_at,
-        }
-        console.log(updatedData)
-        setVideoData(updatedData)
+    const response = await fetch(videoDataUrl, options)
+    if (response.ok === true) {
+      const data = await response.json()
+      const updatedData = {
+        name: data.video_details.channel.name,
+        profileImageUrl: data.video_details.channel.profile_image_url,
+        subscribersCount: data.video_details.channel.subscriber_count,
+        description: data.video_details.description,
+        id: data.video_details.id,
+        thumbnailUrl: data.video_details.thumbnail_url,
+        title: data.video_details.title,
+        videoUrl: data.video_details.video_url,
+        videoCount: data.video_details.view_count,
+        publishedAt: data.video_details.published_at,
       }
+      setVideoData(updatedData)
     }
+  }
 
+  useEffect(() => {
     getVideoData()
-  }, [id])
+  }, [])
 
   const onClickLike = () => {
     setIsLiked(true)
@@ -143,7 +138,7 @@ const VideoItemDetails = ({match}) => {
             <VideoChannelContainer>
               <VideoProfileImage
                 src={videoData.profileImageUrl}
-                alt={videoData.name}
+                alt="channel logo"
               />
               <div>
                 <VideoChannelName>{videoData.name}</VideoChannelName>
