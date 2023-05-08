@@ -12,6 +12,7 @@ import {
   Banner,
   Logo,
   Para,
+  Heading,
   CustomButton,
   MainContainer,
   SubContainer,
@@ -24,6 +25,11 @@ import {
   Searchbar,
   SearchContainer,
   SearchButton,
+  NoVideosImage,
+  NoVideosImageContainer,
+  RetryButton,
+  FailureContainer,
+  FailureImage,
 } from './styledComponents'
 
 const fetchConstants = {
@@ -47,6 +53,7 @@ const Home = () => {
   const [fetchUrl, setFetchUrl] = useState(
     `https://apis.ccbp.in/videos/all?search=${searchInput}`,
   )
+  const [retryClicked, setRetryClicked] = useState(true)
 
   const onSuccessfulFetch = Data => {
     const updatedData = Data.videos.map(eachVideo => ({
@@ -74,6 +81,24 @@ const Home = () => {
     }))
   }
 
+  const onClickRetry = () => {
+    setRetryClicked(prevState => !prevState)
+  }
+
+  const onEmptyView = () => (
+    <>
+      <NoVideosImageContainer>
+        <h1>No Search results found</h1>
+        <p>Try different key words or remove search filter</p>
+        <NoVideosImage
+          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+          alt="no videos"
+        />
+        <RetryButton onClick={onClickRetry}>Retry</RetryButton>
+      </NoVideosImageContainer>
+    </>
+  )
+
   const fetchData = async () => {
     setApiResponse({
       status: fetchConstants.loading,
@@ -88,17 +113,14 @@ const Home = () => {
       },
       method: 'GET',
     }
-    try {
-      const response = await fetch(Url, options)
-      const data = await response.json()
-      if (response.ok === true) {
-        onSuccessfulFetch(data)
-      } else {
-        onFailureFetch(data)
-      }
-    } catch (error) {
-      console.error(error)
-      onFailureFetch(error.message)
+
+    const response = await fetch(Url, options)
+    const data = await response.json()
+
+    if (response.ok === true) {
+      onSuccessfulFetch(data)
+    } else {
+      onFailureFetch(data)
     }
   }
 
@@ -117,7 +139,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchData()
-  }, [fetchUrl])
+  }, [fetchUrl, retryClicked])
 
   // End of code regarding searching
 
@@ -137,12 +159,12 @@ const Home = () => {
       <Banner direction="column">
         <Logo
           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-          alt="logo"
+          alt="nxt watch logo"
         />
         <Para>Buy Nxt Watch Premium prepaid plans with UPI </Para>
         <CustomButton width="30%">GET IT NOW</CustomButton>
       </Banner>
-      <CloseButton>
+      <CloseButton data-testid="close">
         <AiOutlineClose onClick={onClickClose} />
       </CloseButton>
     </Banner>
@@ -157,18 +179,31 @@ const Home = () => {
           <AiOutlineSearch />
         </SearchButton>
       </SearchContainer>
-      <UnorderedList close={close}>
-        {apiResponse.data.map(eachData => (
-          <VideoComponent key={eachData.id} reqDetails={eachData} />
-        ))}
-      </UnorderedList>
+      {apiResponse.data.length === 0 ? (
+        onEmptyView()
+      ) : (
+        <UnorderedList close={close}>
+          {apiResponse.data.map(eachData => (
+            <VideoComponent key={eachData.id} reqDetails={eachData} />
+          ))}
+        </UnorderedList>
+      )}
     </VideosDisplaySection>
   )
 
   const renderLoadingView = () => (
-    <LoadingContainer>
+    <LoadingContainer data-testid="loader">
       <Loader type="ThreeDots" color="blue" height="50" width="50" />
     </LoadingContainer>
+  )
+
+  const renderFailureView = () => (
+    <FailureContainer>
+      <FailureImage src={failedViewImage} alt="failure view" />
+      <Heading>Oops! Something Went Wrong</Heading>
+      <Para>We are having some trouble</Para>
+      <RetryButton onClick={onClickRetry}>Retry</RetryButton>
+    </FailureContainer>
   )
 
   const renderVideoContainer = () => {
@@ -179,8 +214,8 @@ const Home = () => {
         return renderLoadingView()
       case fetchConstants.success:
         return renderSuccessView()
-      // case fetchConstants.failure:
-      //   return renderFailureView()
+      case fetchConstants.failure:
+        return renderFailureView()
       default:
         return null
     }

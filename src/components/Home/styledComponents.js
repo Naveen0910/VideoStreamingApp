@@ -87,5 +87,36 @@ export const SearchButton = styled.button`
   font-size: 20px;
   width: 4%;
   border: 1px solid #94a3b8;
-  data-testid="searchButton"
 `
+export const NoVideosImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+`
+
+export const NoVideosImage = styled.img`
+  width: 60%;
+  height: 60%;
+`
+
+export const RetryButton = styled.button``
+
+export const FailureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  height: 100%;
+`
+
+export const FailureImage = styled.img`
+  height: 60%;
+  wdith: 60%;
+`
+
+export const Heading = styled.h1``
