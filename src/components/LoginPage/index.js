@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {
   MainContainer,
@@ -9,8 +9,6 @@ import {
   CustomImage,
   CustomInput,
 } from './styledComponents'
-import Navbar from '../Navbar'
-import Sidebar from '../Sidebar'
 
 const LoginPage = () => {
   const history = useHistory()
@@ -19,6 +17,8 @@ const LoginPage = () => {
   const [showpassword, setShowPassword] = useState(false)
   const [showErrMsg, setShowErrMsg] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+
+  const jwtToken = Cookies.get('jwt_token')
 
   const onChangePassword = e => {
     setPassword(e.target.value)
@@ -67,35 +67,41 @@ const LoginPage = () => {
   }
 
   return (
-    <MainContainer>
-      <CustomContainer
-        onSubmit={onFormSubmission}
-        direction="column"
-        pad="35px"
-      >
-        <CustomImage
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-          alt="logo"
-        />
-        <InputContainer onChange={onChangeUsername} direction="column">
-          <label htmlFor="username">USERNAME</label>
-          <CustomInput type="text" id="username" />
-        </InputContainer>
-        <InputContainer onChange={onChangePassword} direction="column">
-          <label htmlFor="password">PASSWORD</label>
-          <CustomInput
-            type={showpassword ? 'text' : 'password'}
-            id="password"
-          />
-        </InputContainer>
-        <InputContainer alignItems="center" direction="row">
-          <CustomInput type="checkbox" id="checkbox" onChange={onChecked} />
-          <label htmlFor="checkbox">showpassword</label>
-        </InputContainer>
-        <CustomButton type="submit">Login</CustomButton>
-        <p style={alertStyle}>{showErrMsg ? `*${errorMsg}` : null}</p>
-      </CustomContainer>
-    </MainContainer>
+    <>
+      {jwtToken ? (
+        <Redirect to="/" />
+      ) : (
+        <MainContainer>
+          <CustomContainer
+            onSubmit={onFormSubmission}
+            direction="column"
+            pad="35px"
+          >
+            <CustomImage
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+              alt="website logo"
+            />
+            <InputContainer onChange={onChangeUsername} direction="column">
+              <label htmlFor="username">USERNAME</label>
+              <CustomInput type="text" id="username" />
+            </InputContainer>
+            <InputContainer onChange={onChangePassword} direction="column">
+              <label htmlFor="password">PASSWORD</label>
+              <CustomInput
+                type={showpassword ? 'text' : 'password'}
+                id="password"
+              />
+            </InputContainer>
+            <InputContainer alignItems="center" direction="row">
+              <CustomInput type="checkbox" id="checkbox" onChange={onChecked} />
+              <label htmlFor="checkbox">Show Password</label>
+            </InputContainer>
+            <CustomButton type="submit">Login</CustomButton>
+            <p style={alertStyle}>{showErrMsg ? `*${errorMsg}` : null}</p>
+          </CustomContainer>
+        </MainContainer>
+      )}
+    </>
   )
 }
 

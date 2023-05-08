@@ -32,7 +32,7 @@ export const CustomImage = styled.img`
 `
 
 export const CustomButton = styled.button`
-  color: #ffff;
+  color: #ffffff;
   background-color: #4f46e5;
   margin-top: 10px;
   padding: 10px;
