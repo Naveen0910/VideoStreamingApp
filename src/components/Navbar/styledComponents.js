@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+import {FiSun} from 'react-icons/fi'
 
 export const NavContainer = styled.ul`
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '#ffff')};
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -25,8 +27,14 @@ export const Logo = styled.img`
 
 export const LogoutButton = styled.button`
   background-color: transparent;
+  color: ${props => (props.theme === true ? '#ffff' : '#0f0f0f')};
+  border-color: ${props => (props.theme === true ? '#ffff' : '#0f0f0f')};
 `
 export const ThemeButton = styled.button`
   border: none;
   background-color: transparent;
+`
+export const LightThemeIcon = styled(FiSun)`
+  color: #fff;
+  background-color: '#fff';
 `

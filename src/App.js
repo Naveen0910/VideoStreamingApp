@@ -10,17 +10,20 @@ import TrendingVideos from './components/TrendingVideos'
 import GamingVideos from './components/GamingVideos'
 import VideoItemDetails from './components/VideoItemDetails'
 import SavedVideos from './components/SavedVideos'
+import {ThemeProvider} from './context/ThemeContext/ThemeContext'
 
 const App = () => (
   <VideosProvider>
-    <Switch>
-      <Route exact path="/login" component={LoginPage} />
-      <ProtectedRoute exact path="/" component={Home} />
-      <ProtectedRoute exact path="/trending" component={TrendingVideos} />
-      <ProtectedRoute exact path="/gaming" component={GamingVideos} />
-      <ProtectedRoute exact path="/videos/:id" component={VideoItemDetails} />
-      <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
-    </Switch>
+    <ThemeProvider>
+      <Switch>
+        <Route exact path="/login" component={LoginPage} />
+        <ProtectedRoute exact path="/" component={Home} />
+        <ProtectedRoute exact path="/trending" component={TrendingVideos} />
+        <ProtectedRoute exact path="/gaming" component={GamingVideos} />
+        <ProtectedRoute exact path="/videos/:id" component={VideoItemDetails} />
+        <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
+      </Switch>
+    </ThemeProvider>
   </VideosProvider>
 )
 
