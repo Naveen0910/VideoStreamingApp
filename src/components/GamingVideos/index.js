@@ -30,7 +30,7 @@ const GamingVideos = () => {
           <CustomLink to={`/videos/${data.id}`}>
             <img
               className="gaming-thumbnail"
-              alt="thumbnail"
+              alt="video thumbnail"
               src={data.thumbNailUrl}
             />
             <div className="game-container">
