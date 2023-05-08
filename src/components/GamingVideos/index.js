@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
 import {AiOutlineFire} from 'react-icons/ai'
 import Loader from 'react-loader-spinner'
@@ -17,38 +17,34 @@ const gamingStatus = {
   failed: 'FAILED',
 }
 
-class GamingVideos extends Component {
-  state = {gameFetchedData: [], gamingFetchStatus: gamingStatus.initial}
+const GamingVideos = () => {
+  const [gameFetchedData, setGameFetchedData] = useState([])
+  const [gamingFetchStatus, setGamingFetchStatus] = useState(
+    gamingStatus.initial,
+  )
 
-  componentDidMount() {
-    this.getGamingVideos()
-  }
+  const videoComponent = () => (
+    <ul className="game-entire-list">
+      {gameFetchedData.map(data => (
+        <li key={data.id} className="game-list-item">
+          <CustomLink to={`/videos/${data.id}`}>
+            <img
+              className="gaming-thumbnail"
+              alt="thumbnail"
+              src={data.thumbNailUrl}
+            />
+            <div className="game-container">
+              <p className="game-title">{data.title}</p>
+              <p className="game-view-count">{data.viewCount} views</p>
+            </div>
+          </CustomLink>
+        </li>
+      ))}
+    </ul>
+  )
 
-  videoComponent = () => {
-    const {gameFetchedData} = this.state
-    return (
-      <ul className="game-entire-list">
-        {gameFetchedData.map(data => (
-          <li key={data.id} className="game-list-item">
-            <CustomLink to={`/videos/${data.id}`}>
-              <img
-                className="gaming-thumbnail"
-                alt="thumbnail"
-                src={data.thumbNailUrl}
-              />
-              <div className="game-container">
-                <p className="game-title">{data.title}</p>
-                <p className="game-view-count">{data.viewCount} views</p>
-              </div>
-            </CustomLink>
-          </li>
-        ))}
-      </ul>
-    )
-  }
-
-  getGamingVideos = async () => {
-    this.setState({gamingFetchStatus: gamingStatus.loading})
+  const getGamingVideos = async () => {
+    setGamingFetchStatus(gamingStatus.loading)
     const jwtToken = Cookies.get('jwt_token')
     const gamingUrl = 'https://apis.ccbp.in/videos/gaming'
     const options = {
@@ -66,63 +62,64 @@ class GamingVideos extends Component {
         thumbNailUrl: eachVideo.thumbnail_url,
         viewCount: eachVideo.view_count,
       }))
-      this.setState({
-        gameFetchedData: updatedData,
-        gamingFetchStatus: gamingStatus.success,
-      })
+      setGameFetchedData(updatedData)
+      setGamingFetchStatus(gamingStatus.success)
     } else {
-      this.setState({gamingFetchStatus: gamingStatus.failed})
+      setGamingFetchStatus(gamingStatus.failed)
     }
   }
 
-  onFailedView = () => (
+  useEffect(() => {
+    getGamingVideos()
+  }, [])
+
+  const onFailedView = () => (
     <div className="failed-view-container">
       <img
         className="failed-view-image"
         alt="failed view"
         src={failedViewImage}
       />
-      <button type="button" onClick={this.onClickRetry}>
+      <button type="button" onClick={getGamingVideos}>
         Retry
       </button>
     </div>
   )
 
-  renderLoadingView = () => (
+  const renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
 
-  onRenderVideoContainer = () => {
-    const {gamingFetchStatus} = this.state
-
+  const onRenderVideoContainer = () => {
     switch (gamingFetchStatus) {
       case gamingStatus.success:
-        return this.videoComponent()
+        return videoComponent()
       case gamingStatus.loading:
-        return this.renderLoadingView()
+        return renderLoadingView()
       case gamingStatus.failed:
-        return this.onFailedView()
+        return onFailedView()
       default:
         return null
     }
   }
 
-  render() {
-    return (
-      <div className="app-container">
-        <Navbar />
-        <div className="game-main-container">
-          <Sidebar />
-          <div className="gaming-videos-section">
-            <hr className="horizontal-line" />
-            <div className="vids">{this.onRenderVideoContainer()}</div>
+  return (
+    <>
+      <Navbar />
+      <div className={`game-main-container ${true ? 'dark-theme' : ''}`}>
+        <Sidebar />
+        <div className="gaming-videos-container">
+          <div className="gaming-header-container">
+            <AiOutlineFire className="gaming-icon" />
+            <h1 className="gaming-header">Gaming Videos</h1>
           </div>
+          {onRenderVideoContainer()}
         </div>
       </div>
-    )
-  }
+    </>
+  )
 }
 
 export default GamingVideos

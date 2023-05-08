@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const NavContainer = styled.div`
+export const NavContainer = styled.ul`
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -8,7 +8,7 @@ export const NavContainer = styled.div`
   align-items: center;
 `
 
-export const CustomContainer = styled.div`
+export const CustomContainer = styled.li`
   display: flex;
   justify-content: space-between;
   min-width: 20%;
@@ -22,5 +22,9 @@ export const Logo = styled.img`
 `
 
 export const LogoutButton = styled.button`
+  background-color: transparent;
+`
+export const ThemeButton = styled.button`
+  border: none;
   background-color: transparent;
 `

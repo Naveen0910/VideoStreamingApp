@@ -4,6 +4,11 @@ const SavedVideosContext = createContext()
 
 export const VideosProvider = ({children}) => {
   const [videosArray, setVideosArray] = useState([])
+  const [isDarkTheme, setIsDarkTheme] = useState(true)
+
+  const onChangeTheme = () => {
+    setIsDarkTheme(prevState => !prevState)
+  }
 
   const addToArray = object => {
     setVideosArray([...videosArray, object])
@@ -21,7 +26,13 @@ export const VideosProvider = ({children}) => {
 
   return (
     <SavedVideosContext.Provider
-      value={{videosArray, addToArray, removeFromArray}}
+      value={{
+        videosArray,
+        addToArray,
+        removeFromArray,
+        isDarkTheme,
+        setIsDarkTheme,
+      }}
     >
       {children}
     </SavedVideosContext.Provider>
