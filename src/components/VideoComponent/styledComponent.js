@@ -8,10 +8,10 @@ export const StyledVideoComponent = styled.li`
   list-style-type: none;
   max-width: 30%;
   max-height: 30%;
-  background-color: #f9f9f9;
+  background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
 `
 export const CustomLink = styled(Link)`
-    color: #333;
+  color: ${props => (props.theme === true ? '#ffffff' : '#181818')};
     text-decoration: none;
     }
   `
@@ -58,7 +58,7 @@ export const DescriptionSection = styled.div`
 export const Title = styled.p`
   font-size: 16px;
   font-weight: 500;
-  color: #1e1e1e;
+
   margin-bottom: 5px;
   max-width: 100%;
 `
@@ -66,7 +66,7 @@ export const Title = styled.p`
 export const ChannelName = styled.p`
   font-size: 14px;
   font-weight: 400;
-  color: #606060;
+
   margin-bottom: 5px;
 `
 
@@ -78,12 +78,10 @@ export const ViewsDate = styled.div`
 export const Views = styled.p`
   font-size: 14px;
   font-weight: 400;
-  color: #606060;
   margin-right: 10px;
 `
 
 export const PublishedAt = styled.p`
   font-size: 14px;
   font-weight: 400;
-  color: #606060;
 `

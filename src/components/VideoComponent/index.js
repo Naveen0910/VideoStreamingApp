@@ -1,4 +1,5 @@
 import {formatDistanceToNow} from 'date-fns'
+import {useContext} from 'react'
 import {
   StyledVideoComponent,
   ThumbnailSection,
@@ -14,8 +15,10 @@ import {
   PublishedAt,
   CustomLink,
 } from './styledComponent'
+import ThemeContext from '../../context/ThemeContext/ThemeContext'
 
 const VideoComponent = props => {
+  const {isDarkTheme} = useContext(ThemeContext)
   const {reqDetails} = props
   const {
     id,
@@ -28,8 +31,8 @@ const VideoComponent = props => {
   } = reqDetails
 
   return (
-    <StyledVideoComponent key={id}>
-      <CustomLink to={`/videos/${id}`}>
+    <StyledVideoComponent theme={isDarkTheme} key={id}>
+      <CustomLink theme={isDarkTheme} to={`/videos/${id}`}>
         <ThumbnailSection>
           <Thumbnail src={thumbNailUrl} alt="video thumbnail" />
         </ThumbnailSection>

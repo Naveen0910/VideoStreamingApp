@@ -1,10 +1,11 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
 import {formatDistanceToNow} from 'date-fns'
 import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
 
+import ThemeContext from '../../context/ThemeContext/ThemeContext'
 import VideoComponent from '../VideoComponent'
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
@@ -30,6 +31,8 @@ import {
   RetryButton,
   FailureContainer,
   FailureImage,
+  InternalBanner,
+  Magnifier,
 } from './styledComponents'
 
 const fetchConstants = {
@@ -54,6 +57,8 @@ const Home = () => {
     `https://apis.ccbp.in/videos/all?search=${searchInput}`,
   )
   const [retryClicked, setRetryClicked] = useState(true)
+
+  const {isDarkTheme} = useContext(ThemeContext)
 
   const onSuccessfulFetch = Data => {
     const updatedData = Data.videos.map(eachVideo => ({
@@ -155,15 +160,22 @@ const Home = () => {
       direction="row"
       justifyContent="space-between"
       padding="20px"
+      theme={isDarkTheme}
     >
-      <Banner direction="column">
+      <InternalBanner>
         <Logo
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+          src={
+            isDarkTheme
+              ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+              : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+          }
           alt="nxt watch logo"
         />
         <Para>Buy Nxt Watch Premium prepaid plans with UPI </Para>
-        <CustomButton width="30%">GET IT NOW</CustomButton>
-      </Banner>
+        <CustomButton theme={isDarkTheme} width="30%">
+          GET IT NOW
+        </CustomButton>
+      </InternalBanner>
       <CloseButton data-testid="close">
         <AiOutlineClose onClick={onClickClose} />
       </CloseButton>
@@ -172,11 +184,20 @@ const Home = () => {
 
   /* Different Views Start */
   const renderSuccessView = () => (
-    <VideosDisplaySection>
+    <VideosDisplaySection theme={isDarkTheme}>
       <SearchContainer>
-        <Searchbar type="search" onChange={onChangeSearchInput} />
-        <SearchButton data-testid="searchButton" onClick={onClickSearchIcon}>
-          <AiOutlineSearch />
+        <Searchbar
+          theme={isDarkTheme}
+          placeholder="search"
+          type="search"
+          onChange={onChangeSearchInput}
+        />
+        <SearchButton
+          theme={isDarkTheme}
+          data-testid="searchButton"
+          onClick={onClickSearchIcon}
+        >
+          <Magnifier theme={isDarkTheme} />
         </SearchButton>
       </SearchContainer>
       {apiResponse.data.length === 0 ? (
@@ -222,11 +243,11 @@ const Home = () => {
   }
 
   return (
-    <MainContainer height="100vh">
+    <MainContainer theme={isDarkTheme} height="100vh">
       <Navbar />
       <SubContainer>
         <Sidebar />
-        <RightSectionContainer>
+        <RightSectionContainer theme={isDarkTheme}>
           {!close && bannerElement()}
           <ViewsContainer>{renderVideoContainer()}</ViewsContainer>
         </RightSectionContainer>

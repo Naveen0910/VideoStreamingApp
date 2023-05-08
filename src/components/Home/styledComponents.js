@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const Banner = styled.div`
   background-image: url(${props => props.imageUrl});
+  background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
   background-size: cover;
   display: flex;
   flex-direction: ${props => props.direction};
@@ -10,6 +11,12 @@ export const Banner = styled.div`
   width: ${props => props.width};
   height: 20vh;
   padding: ${props => props.padding};
+`
+
+export const InternalBanner = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: '#181818';
 `
 
 export const Logo = styled.img`
@@ -35,6 +42,7 @@ export const MainContainer = styled.div`
   height: ${props => props.height};
   overflow-y: auto;
   padding: 0px;
+  background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
 `
 
 export const SubContainer = styled.div`
@@ -45,6 +53,7 @@ export const RightSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
 `
 
 /* Views Container */
@@ -72,23 +81,31 @@ export const UnorderedList = styled.ul`
   padding-top: 10px;
 `
 export const VideosDisplaySection = styled.div`
-  background-color: #f1f1f1;
+  background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
   flex: 1;
   padding-top: 5px;
 `
 
 export const SearchContainer = styled.div`
   display: flex;
+  margin-top: 10px;
 `
 
-export const Searchbar = styled.input``
+export const Searchbar = styled.input`
+  background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
+`
 
 export const SearchButton = styled.button`
   color: black;
   font-size: 20px;
   width: 4%;
   border: 1px solid #94a3b8;
+  background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
 `
+export const Magnifier = styled(AiOutlineSearch)`
+  color: ${props => (props.theme === true ? '#94a3b8' : '#f1f1f1')};
+`
+
 export const NoVideosImageContainer = styled.div`
   display: flex;
   flex-direction: column;
