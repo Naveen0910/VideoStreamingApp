@@ -5,10 +5,16 @@ import Loader from 'react-loader-spinner'
 import './index.css'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
-import {CustomLink} from './styledComponents'
-
-const failedViewImage =
-  'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+import {
+  CustomLink,
+  LoadingContainer,
+  FailureContainer,
+  FailureImage,
+  Heading,
+  Para,
+  RetryButton,
+} from './styledComponents'
+import ThemeContext from '../../context/ThemeContext/ThemeContext'
 
 const gamingStatus = {
   initial: 'INITIAL',
@@ -22,6 +28,8 @@ const GamingVideos = () => {
   const [gamingFetchStatus, setGamingFetchStatus] = useState(
     gamingStatus.initial,
   )
+
+  const {isDarkTheme} = useContext(ThemeContext)
 
   const videoComponent = () => (
     <ul className="game-entire-list">
@@ -73,23 +81,30 @@ const GamingVideos = () => {
     getGamingVideos()
   }, [])
 
-  const onFailedView = () => (
-    <div className="failed-view-container">
-      <img
-        className="failed-view-image"
-        alt="failed view"
-        src={failedViewImage}
-      />
-      <button type="button" onClick={getGamingVideos}>
-        Retry
-      </button>
-    </div>
-  )
+  const onClickRetry = () => {
+    getGamingVideos()
+  }
 
   const renderLoadingView = () => (
-    <div className="loader-container" data-testid="loader">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
-    </div>
+    <LoadingContainer data-testid="loader">
+      <Loader type="ThreeDots" color="blue" height="50" width="50" />
+    </LoadingContainer>
+  )
+
+  const renderFailureView = () => (
+    <FailureContainer>
+      <FailureImage
+        src={
+          isDarkTheme
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        }
+        alt="failure view"
+      />
+      <Heading>Oops! Something Went Wrong</Heading>
+      <Para>We are having some trouble</Para>
+      <RetryButton onClick={onClickRetry}>Retry</RetryButton>
+    </FailureContainer>
   )
 
   const onRenderVideoContainer = () => {
@@ -99,7 +114,7 @@ const GamingVideos = () => {
       case gamingStatus.loading:
         return renderLoadingView()
       case gamingStatus.failed:
-        return onFailedView()
+        return renderFailureView()
       default:
         return null
     }
