@@ -4,6 +4,7 @@ import ReactPlayer from 'react-player'
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '#ffffff')};
 `
 
 export const VideoContainer = styled.div`
@@ -14,11 +15,15 @@ export const VideoContainer = styled.div`
   padding-top: 10px;
   padding-right: 20px;
   width: 80%;
+  background-color:${props => (props.theme === true ? '#0f0f0f' : '#ffffff')}
+  border: 2px solid red;
 `
 
 export const VideoPlayerContainer = styled.div`
   width: 100%;
   height: 50vh;
+  margin-top: 0;
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '#ffffff')};
 `
 
 export const ReactPlayers = styled(ReactPlayer)``
@@ -27,12 +32,15 @@ export const VideoInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '#ffffff')};
+  margin-top: 0;
 `
 
 export const VideoTitle = styled.p`
   font-size: 24px;
   font-weight: 600;
   margin: 0;
+  color: ${props => (props.theme !== true ? '#0f0f0f' : '#ffffff')};
 `
 
 export const LikeDislikeContainer = styled.div`
@@ -46,6 +54,7 @@ export const VideoItemViewCount = styled.div`
   font-size: 14px;
   font-weight: 500;
   margin-right: 16px;
+  color: ${props => (props.theme !== true ? '#0f0f0f' : '#ffffff')};
 `
 
 export const LikeButton = styled.button`
@@ -76,6 +85,7 @@ export const VideoChannelContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+  color: ${props => (props.theme !== true ? '#0f0f0f' : '#ffffff')};
 `
 
 export const VideoChannelName = styled.p`

@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import {AiOutlineLike, AiOutlineDislike, AiFillSave} from 'react-icons/ai'
 import {useParams} from 'react-router-dom'
 
+import ThemeContext from '../../context/ThemeContext/ThemeContext'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 import {
@@ -32,6 +33,7 @@ const VideoItemDetails = () => {
   const [saveText, setSaveText] = useState('Save')
 
   const {addToArray} = useContext(SavedVideosContext)
+  const {isDarkTheme} = useContext(ThemeContext)
 
   const {id} = useParams()
 
@@ -90,14 +92,16 @@ const VideoItemDetails = () => {
   return (
     <>
       <Navbar />
-      <ContentContainer>
+      <ContentContainer theme={isDarkTheme}>
         <Sidebar />
-        <VideoContainer>
-          <VideoPlayerContainer>{renderVideoDetails()}</VideoPlayerContainer>
-          <VideoInfoContainer>
-            <VideoTitle>{videoData.title}</VideoTitle>
+        <VideoContainer data-testid="videoItemDetails" theme={isDarkTheme}>
+          <VideoPlayerContainer theme={isDarkTheme}>
+            {renderVideoDetails()}
+          </VideoPlayerContainer>
+          <VideoInfoContainer theme={isDarkTheme}>
+            <VideoTitle theme={isDarkTheme}>{videoData.title}</VideoTitle>
             <LikeDislikeContainer>
-              <VideoItemViewCount>
+              <VideoItemViewCount theme={isDarkTheme}>
                 <p>{videoData.videoCount} views</p>
               </VideoItemViewCount>
               <ButtonsContainer>
@@ -129,13 +133,13 @@ const VideoItemDetails = () => {
                   className="like-button"
                 >
                   <AiFillSave className={isSaved ? 'active' : 'non-active'} />
-                  <p className={isSaved ? 'active' : 'non-active'}>
+                  <button className={isSaved ? 'active' : 'non-active'}>
                     {saveText}
-                  </p>
+                  </button>
                 </LikeButton>
               </ButtonsContainer>
             </LikeDislikeContainer>
-            <VideoChannelContainer>
+            <VideoChannelContainer theme={isDarkTheme}>
               <VideoProfileImage
                 src={videoData.profileImageUrl}
                 alt="channel logo"
