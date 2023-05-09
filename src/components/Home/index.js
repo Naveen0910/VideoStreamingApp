@@ -220,7 +220,14 @@ const Home = () => {
 
   const renderFailureView = () => (
     <FailureContainer>
-      <FailureImage src={failedViewImage} alt="failure view" />
+      <FailureImage
+        src={
+          isDarkTheme
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        }
+        alt="failure view"
+      />
       <Heading>Oops! Something Went Wrong</Heading>
       <Para>We are having some trouble</Para>
       <RetryButton onClick={onClickRetry}>Retry</RetryButton>
