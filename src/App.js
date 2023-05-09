@@ -11,6 +11,7 @@ import GamingVideos from './components/GamingVideos'
 import VideoItemDetails from './components/VideoItemDetails'
 import SavedVideos from './components/SavedVideos'
 import {ThemeProvider} from './context/ThemeContext/ThemeContext'
+import NotFoundRoute from './components/NotFoundRoute'
 
 const App = () => (
   <VideosProvider>
@@ -22,6 +23,7 @@ const App = () => (
         <ProtectedRoute exact path="/gaming" component={GamingVideos} />
         <ProtectedRoute exact path="/videos/:id" component={VideoItemDetails} />
         <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
+        <Route component={NotFoundRoute} />
       </Switch>
     </ThemeProvider>
   </VideosProvider>
