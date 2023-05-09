@@ -2,6 +2,8 @@ import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
 import {AiOutlineFire} from 'react-icons/ai'
 import Loader from 'react-loader-spinner'
+
+import ThemeContext from '../../context/ThemeContext/ThemeContext'
 import './index.css'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
@@ -14,7 +16,6 @@ import {
   Para,
   RetryButton,
 } from './styledComponents'
-import ThemeContext from '../../context/ThemeContext/ThemeContext'
 
 const gamingStatus = {
   initial: 'INITIAL',

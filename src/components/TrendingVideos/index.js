@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
 import {AiOutlineFire} from 'react-icons/ai'
 import {formatDistanceToNow} from 'date-fns'
@@ -15,16 +15,19 @@ import {
   StyledYearAndViews,
   StyledViewCount,
   StyledPublishedDate,
-  StyledFailedViewContainer,
-  StyledFailedViewImage,
-  StyledRetryButton,
-  StyledLoaderContainer,
   StyledTrendingContainer,
   StyledTrendingHeader,
   StyledTrendingTitle,
   ViewContainer,
   CustomLink,
+  LoadingContainer,
+  Heading,
+  Para,
+  FailureContainer,
+  FailureImage,
+  RetryButton,
 } from './styledComponents'
+import ThemeContext from '../../context/ThemeContext/ThemeContext'
 
 const failedViewImage =
   'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
@@ -41,6 +44,8 @@ const TrendingVideos = () => {
   const [trendingFetchStatus, setTrendingFetchStatus] = useState(
     trendingStatus.initial,
   )
+
+  const {isDarkTheme} = useContext(ThemeContext)
 
   const videoComponent = () => (
     <StyledUnorderedList>
@@ -113,23 +118,30 @@ const TrendingVideos = () => {
     getTrendingVideos()
   }, [])
 
-  const onFailedView = () => (
-    <StyledFailedViewContainer>
-      <StyledFailedViewImage
-        className="failed-view-image"
-        alt="failed view"
-        src={failedViewImage}
-      />
-      <StyledRetryButton type="button" onClick={getTrendingVideos}>
-        Retry
-      </StyledRetryButton>
-    </StyledFailedViewContainer>
-  )
+  const onClickRetry = () => {
+    getTrendingVideos()
+  }
 
   const renderLoadingView = () => (
-    <StyledLoaderContainer>
-      <Loader type="ThreeDots" color="#ffffff" height={80} width={80} />
-    </StyledLoaderContainer>
+    <LoadingContainer data-testid="loader">
+      <Loader type="ThreeDots" color="blue" height="50" width="50" />
+    </LoadingContainer>
+  )
+
+  const renderFailureView = () => (
+    <FailureContainer>
+      <FailureImage
+        src={
+          isDarkTheme
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        }
+        alt="failure view"
+      />
+      <Heading>Oops! Something Went Wrong</Heading>
+      <Para>We are having some trouble</Para>
+      <RetryButton onClick={onClickRetry}>Retry</RetryButton>
+    </FailureContainer>
   )
 
   const renderSuccessView = () => (
@@ -152,7 +164,7 @@ const TrendingVideos = () => {
       case trendingStatus.success:
         return renderSuccessView()
       case trendingStatus.failed:
-        return onFailedView()
+        return renderFailureView()
       default:
         return null
     }
