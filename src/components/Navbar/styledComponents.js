@@ -1,5 +1,16 @@
 import styled from 'styled-components'
 import {FiSun} from 'react-icons/fi'
+import Popup from 'reactjs-popup'
+
+export const StyledPopup = styled(Popup)`
+  max-width: 400px;
+  padding: 24px;
+  background-color: ${props => (props.theme ? '#181818' : '#f1f1f1')};
+  border-radius: 8px;
+  border: 2px solid red;
+`
+
+export const PopUpContainer = styled.div``
 
 export const NavContainer = styled.ul`
   background-color: ${props => (props.theme === true ? '#0f0f0f' : '#ffff')};

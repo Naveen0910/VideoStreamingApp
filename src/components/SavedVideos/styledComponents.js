@@ -8,10 +8,10 @@ export const SavedVideosContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  border: 2px solid red;
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '')};
 `
 export const UnorderedList = styled.ul`
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
 `
@@ -61,6 +61,7 @@ export const PublishedOn = styled.p`
 `
 export const NoVideosContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -71,3 +72,6 @@ export const NoVideosImage = styled.img`
 height:50vh;
 width:50%:
 `
+export const Heading = styled.h1``
+
+export const Para = styled.p``
