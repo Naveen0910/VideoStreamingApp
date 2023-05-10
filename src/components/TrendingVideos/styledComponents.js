@@ -167,3 +167,13 @@ export const LoadingContainer = styled.div`
 `
 
 export const Para = styled.p``
+
+export const VideosContainer = styled.div`
+  width: 70%;
+  border: 2px solid red;
+`
+export const SideBarContainer = styled.div`
+  width: 30%;
+  height: 90vh;
+  border: 2px solid red;
+`

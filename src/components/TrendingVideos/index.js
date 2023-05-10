@@ -26,6 +26,8 @@ import {
   FailureContainer,
   FailureImage,
   RetryButton,
+  VideosContainer,
+  SideBarContainer,
 } from './styledComponents'
 import ThemeContext from '../../context/ThemeContext/ThemeContext'
 
@@ -173,8 +175,10 @@ const TrendingVideos = () => {
     <>
       <Navbar />
       <ViewContainer>
-        <Sidebar />
-        {renderTrendingView()}
+        <SideBarContainer>
+          <Sidebar />
+        </SideBarContainer>
+        <VideosContainer> {renderTrendingView()}</VideosContainer>
       </ViewContainer>
     </>
   )

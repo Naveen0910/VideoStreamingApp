@@ -52,7 +52,7 @@ export const SubContainer = styled.div`
 export const RightSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 70%;
   background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
 `
 

@@ -31,6 +31,7 @@ import {
   RetryButton,
 } from './styledComponents'
 import SavedVideosContext from '../../context/SavedVideosContext/SavedVideosContext'
+import {SideBarContainer} from '../TrendingVideos/styledComponents'
 
 const videoItemStatus = {
   initial: 'INITIAL',
@@ -216,7 +217,9 @@ const VideoItemDetails = () => {
     <>
       <Navbar />
       <ContentContainer theme={isDarkTheme}>
-        <Sidebar />
+        <SideBarContainer>
+          <Sidebar />
+        </SideBarContainer>
         <VideoContainer data-testid="videoItemDetails" theme={isDarkTheme}>
           {onRenderVideoContainer()}
         </VideoContainer>

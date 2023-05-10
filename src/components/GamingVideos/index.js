@@ -2,6 +2,7 @@ import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
 import {AiOutlineFire} from 'react-icons/ai'
 import Loader from 'react-loader-spinner'
+import {FaGamepad} from 'react-icons/fa'
 
 import ThemeContext from '../../context/ThemeContext/ThemeContext'
 import './index.css'
@@ -16,6 +17,7 @@ import {
   Para,
   RetryButton,
 } from './styledComponents'
+import {SideBarContainer} from '../TrendingVideos/styledComponents'
 
 const gamingStatus = {
   initial: 'INITIAL',
@@ -125,13 +127,15 @@ const GamingVideos = () => {
     <>
       <Navbar />
       <div className={`game-main-container ${true ? 'dark-theme' : ''}`}>
-        <Sidebar />
+        <SideBarContainer>
+          <Sidebar />
+        </SideBarContainer>
         <div className="gaming-videos-container">
           <div className="gaming-header-container">
-            <AiOutlineFire className="gaming-icon" />
+            <FaGamepad className="gaming-icon" />
             <h1 className="gaming-header">Gaming Videos</h1>
           </div>
-          {onRenderVideoContainer()}
+          <div className="display-container">{onRenderVideoContainer()}</div>
         </div>
       </div>
     </>

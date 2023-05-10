@@ -34,6 +34,7 @@ import {
   InternalBanner,
   Magnifier,
 } from './styledComponents'
+import {SideBarContainer} from '../TrendingVideos/styledComponents'
 
 const fetchConstants = {
   initial: 'INITIAL',
@@ -253,7 +254,9 @@ const Home = () => {
     <MainContainer theme={isDarkTheme} height="100vh">
       <Navbar />
       <SubContainer>
-        <Sidebar />
+        <SideBarContainer>
+          <Sidebar />
+        </SideBarContainer>
         <RightSectionContainer theme={isDarkTheme}>
           {!close && bannerElement()}
           <ViewsContainer>{renderVideoContainer()}</ViewsContainer>

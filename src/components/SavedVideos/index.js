@@ -22,6 +22,7 @@ import {
   Heading,
 } from './styledComponents'
 import {Para} from '../GamingVideos/styledComponents'
+import {SideBarContainer} from '../TrendingVideos/styledComponents'
 import './index.css'
 import ThemeContext from '../../context/ThemeContext/ThemeContext'
 
@@ -68,7 +69,9 @@ const SavedVideos = () => {
     <>
       <Navbar />
       <ViewContainer>
-        <Sidebar />
+        <SideBarContainer>
+          <Sidebar />
+        </SideBarContainer>
         <SavedVideosContainer theme={isDarkTheme} data-testid="savedVideos">
           {onRenderSavedVideosView()}
         </SavedVideosContainer>
