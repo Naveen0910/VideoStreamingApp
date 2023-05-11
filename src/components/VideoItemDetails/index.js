@@ -29,6 +29,8 @@ import {
   FailureContainer,
   FailureImage,
   RetryButton,
+  HorizontalLine,
+  ChannelInfoContainer,
 } from './styledComponents'
 import SavedVideosContext from '../../context/SavedVideosContext/SavedVideosContext'
 import {SideBarContainer} from '../TrendingVideos/styledComponents'
@@ -45,7 +47,7 @@ const VideoItemDetails = () => {
   const [isLiked, setIsLiked] = useState(false)
   const [isDisliked, setIsDisliked] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
-  const [saveText, setSaveText] = useState('Save')
+  const [saveText, setSaveText] = useState(false)
   const [videoItemFetchStatus, setVideoItemFetchStatus] = useState(
     videoItemStatus.initial,
   )
@@ -107,7 +109,6 @@ const VideoItemDetails = () => {
 
   const onClickSaved = () => {
     setIsSaved(!isSaved)
-    setSaveText('Saved')
     addToArray(videoData)
   }
 
@@ -151,18 +152,19 @@ const VideoItemDetails = () => {
               className="like-button"
             >
               <AiFillSave className={isSaved ? 'active' : 'non-active'} />
-              <button className={isSaved ? 'active' : 'non-active'}>
-                {saveText}
-              </button>
+              <p className={isSaved ? 'active' : 'non-active'}>
+                {isSaved ? 'Saved' : 'Save'}
+              </p>
             </LikeButton>
           </ButtonsContainer>
         </LikeDislikeContainer>
+        <HorizontalLine theme={isDarkTheme} />
         <VideoChannelContainer theme={isDarkTheme}>
           <VideoProfileImage
             src={videoData.profileImageUrl}
             alt="channel logo"
           />
-          <div>
+          <ChannelInfoContainer>
             <VideoChannelName>{videoData.name}</VideoChannelName>
             <VideoChannelSubcribers>
               {`${videoData.subscribersCount} subscribers`}
@@ -170,7 +172,7 @@ const VideoItemDetails = () => {
             <VideoChannelDescription>
               {videoData.description}
             </VideoChannelDescription>
-          </div>
+          </ChannelInfoContainer>
         </VideoChannelContainer>
       </VideoInfoContainer>
     </>

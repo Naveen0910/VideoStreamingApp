@@ -10,13 +10,11 @@ export const ContentContainer = styled.div`
 export const VideoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 24px;
   padding-left: 10px;
   padding-top: 10px;
   padding-right: 20px;
   width: 80%;
-  background-color:${props => (props.theme === true ? '#0f0f0f' : '#ffffff')}
-  border: 2px solid red;
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '#ffffff')};
 `
 
 export const VideoPlayerContainer = styled.div`
@@ -31,9 +29,8 @@ export const ReactPlayers = styled(ReactPlayer)``
 export const VideoInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 16px;
+  margin-top: 25px;
   background-color: ${props => (props.theme === true ? '#0f0f0f' : '#ffffff')};
-  margin-top: 0;
 `
 
 export const VideoTitle = styled.p`
@@ -47,7 +44,8 @@ export const LikeDislikeContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
+  padding-right: 10%;
 `
 
 export const VideoItemViewCount = styled.div`
@@ -95,21 +93,19 @@ export const VideoChannelName = styled.p`
 `
 
 export const VideoChannelSubcribers = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   margin: 0;
-  margin-left: 8px;
 `
 
 export const VideoChannelDescription = styled.p`
   font-size: 14px;
   font-weight: 400;
-  margin: 0;
-  margin-top: 8px;
 `
 
 export const ButtonsContainer = styled.div`
   display: flex;
+  width: 150px;
 `
 
 export const FailureContainer = styled.div`
@@ -140,3 +136,16 @@ export const LoadingContainer = styled.div`
 `
 
 export const Para = styled.p``
+
+export const HorizontalLine = styled.hr`
+  color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
+  height: 2px;
+  margin-top: 0px;
+  border: none;
+  width: 100%;
+  background-color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
+`
+export const ChannelInfoContainer = styled.div`
+  text-align: start;
+  padding-left: 10px;
+`
