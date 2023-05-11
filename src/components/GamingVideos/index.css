@@ -64,7 +64,6 @@
   width: calc(21% - 1rem);
   box-shadow: 0px 2px 4px rgba(14, 19, 44, 0.1);
   border-radius: 4px;
-  overflow: hidden;
   height: 40vh;
   padding-top: 20px;
 }
@@ -116,4 +115,9 @@
 .display-container {
   height: 90%;
   overflow-y: scroll;
+}
+
+.dark-theme {
+  color: #fff;
+  background-color: #181818;
 }

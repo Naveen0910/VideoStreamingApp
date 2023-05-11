@@ -36,15 +36,22 @@ const GamingVideos = () => {
   const videoComponent = () => (
     <ul className="game-entire-list">
       {gameFetchedData.map(data => (
-        <li key={data.id} className="game-list-item">
+        <li
+          key={data.id}
+          className={`game-list-item ${isDarkTheme ? 'dark-theme' : ''}`}
+        >
           <CustomLink to={`/videos/${data.id}`}>
             <img
               className="gaming-thumbnail"
               alt="video thumbnail"
               src={data.thumbNailUrl}
             />
-            <div className="game-container">
-              <p className="game-title">{data.title}</p>
+            <div
+              className={`game-container ${isDarkTheme ? 'dark-theme' : ''}`}
+            >
+              <p className={`game-title ${isDarkTheme ? 'dark-theme' : ''}`}>
+                {data.title}
+              </p>
               <p className="game-view-count">{data.viewCount} views</p>
             </div>
           </CustomLink>
@@ -125,7 +132,7 @@ const GamingVideos = () => {
   return (
     <>
       <Navbar />
-      <div className={`game-main-container ${true ? 'dark-theme' : ''}`}>
+      <div className={`game-main-container ${isDarkTheme ? 'dark-theme' : ''}`}>
         <SideBarContainer>
           <Sidebar />
         </SideBarContainer>
