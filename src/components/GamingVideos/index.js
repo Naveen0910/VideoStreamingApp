@@ -1,6 +1,5 @@
 import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
-import {AiOutlineFire} from 'react-icons/ai'
 import Loader from 'react-loader-spinner'
 import {FaGamepad} from 'react-icons/fa'
 
