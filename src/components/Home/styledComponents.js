@@ -103,18 +103,25 @@ export const Searchbar = styled.input`
   height: 35px;
   padding: 10px;
   font-size: 15px;
+  border-radius: 15px;
   border-right: none;
+  outline: none;
 `
 
 export const SearchButton = styled.button`
   color: black;
   font-size: 20px;
-  width: 4%;
-  border: 3px solid black;
+  width: 5%;
+  border: 2px solid black;
   background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
   border-color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
   height: 35px;
-  border-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-left: none;
+  margin-left: -40px;
 `
 export const Magnifier = styled(AiOutlineSearch)`
   color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
