@@ -93,21 +93,31 @@ export const VideosDisplaySection = styled.div`
 export const SearchContainer = styled.div`
   display: flex;
   margin-top: 10px;
+  margin-left: 20px;
 `
 
 export const Searchbar = styled.input`
   background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
+  border-color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
+  width: 30%;
+  height: 35px;
+  padding: 10px;
+  font-size: 15px;
+  border-right: none;
 `
 
 export const SearchButton = styled.button`
   color: black;
   font-size: 20px;
   width: 4%;
-  border: 1px solid #94a3b8;
+  border: 3px solid black;
   background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
+  border-color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
+  height: 35px;
+  border-radius: 10px;
 `
 export const Magnifier = styled(AiOutlineSearch)`
-  color: ${props => (props.theme === true ? '#94a3b8' : '#f1f1f1')};
+  color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
 `
 
 export const NoVideosImageContainer = styled.div`
