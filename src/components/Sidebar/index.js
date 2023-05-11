@@ -30,9 +30,6 @@ const ButtonContainer = styled.ul`
 const CustomLink = styled(Link)`
   text-decoration: none;
   width: 100%;
-  :hover {
-    background-color: #e2e8f0;
-  }
 `
 
 const Button = styled.li`
@@ -43,6 +40,10 @@ const Button = styled.li`
   border-radius: 8px;
   width: 100%;
   cursor: pointer;
+  :hover {
+    background-color: #f1f1f1;
+  }
+  width: 70%;
 `
 
 const Text = styled.span`
@@ -79,12 +80,6 @@ const Home = styled(FaHome)`
 `
 
 const Sidebar = () => {
-  const [isSelected, setIsSelected] = useState()
-  const handleSelect = itemSelected => {
-    setIsSelected(itemSelected)
-  }
-  const selected = itemSelected =>
-    itemSelected === isSelected ? 'selected' : ''
   const {isDarkTheme} = useContext(ThemeContext)
 
   return (

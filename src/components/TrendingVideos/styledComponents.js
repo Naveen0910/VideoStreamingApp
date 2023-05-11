@@ -2,19 +2,28 @@ import styled from 'styled-components'
 import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
 
+import {AiOutlineFire} from 'react-icons/ai'
+
+export const Firelogo = styled(AiOutlineFire)`
+  font-size: 40px;
+  margin-right: 10px;
+  margin-left: 10px;
+`
+
 export const StyledUnorderedList = styled.ul`
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
   list-style-type: none;
   max-height: 72vh;
   overflow-y: scroll;
-  width: 1300px;
+  width: 100%;
 `
 export const CustomLink = styled(Link)`
     color: #333;
     text-decoration: none;
     }
+    display:flex;
   `
 
 export const StyledListItem = styled.li`
@@ -27,7 +36,7 @@ export const StyledListItem = styled.li`
 `
 
 export const StyledThumbnail = styled.img`
-  width: 30%;
+  width: 200px;
   height: 20vh;
 `
 
@@ -103,6 +112,7 @@ export const StyledTrendingHeader = styled.div`
   color: #f9f9f9;
   margin: 0;
   margin-bottom: 24px;
+  padding-top: 0;
 `
 
 export const StyledLoaderContainer = styled.div`
@@ -127,12 +137,16 @@ export const StyledTrendingContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
+  padding-top: 0;
+  margin-top: 0;
 `
 
 export const StyledTrendingTitle = styled.h1`
-  font-weight: bold;
-  margin: 0px;
+  display: flex;
+  align-items: center;
   color: black;
+  font-size: 15px;
+  margin: 0;
 `
 export const ViewContainer = styled.div`
   display: flex;
@@ -149,8 +163,8 @@ export const FailureContainer = styled.div`
 `
 
 export const FailureImage = styled.img`
-  height: 60%;
-  wdith: 60%;
+  height: 40%;
+  width: 40%;
 `
 export const Heading = styled.h1``
 
@@ -170,10 +184,10 @@ export const Para = styled.p``
 
 export const VideosContainer = styled.div`
   width: 70%;
-  border: 2px solid red;
+  padding-top: 0;
 `
 export const SideBarContainer = styled.div`
   width: 30%;
   height: 90vh;
-  border: 2px solid red;
 `
+export const TrendingVideosContainer = styled.div``

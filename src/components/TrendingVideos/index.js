@@ -1,11 +1,11 @@
 import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
-import {AiOutlineFire} from 'react-icons/ai'
 import {formatDistanceToNow} from 'date-fns'
 import Loader from 'react-loader-spinner'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 import {
+  Firelogo,
   StyledUnorderedList,
   StyledListItem,
   StyledThumbnail,
@@ -17,6 +17,7 @@ import {
   StyledPublishedDate,
   StyledTrendingContainer,
   StyledTrendingHeader,
+  TrendingVideosContainer,
   StyledTrendingTitle,
   ViewContainer,
   CustomLink,
@@ -149,12 +150,11 @@ const TrendingVideos = () => {
   const renderSuccessView = () => (
     <>
       <StyledTrendingContainer>
-        <StyledTrendingHeader>
-          <StyledTrendingTitle>
-            Trending Videos <AiOutlineFire />
-          </StyledTrendingTitle>
-        </StyledTrendingHeader>
-        {videoComponent()}
+        <StyledTrendingTitle>
+          <Firelogo />
+          <h1>Trending Videos</h1>
+        </StyledTrendingTitle>
+        <TrendingVideosContainer>{videoComponent()}</TrendingVideosContainer>
       </StyledTrendingContainer>
     </>
   )

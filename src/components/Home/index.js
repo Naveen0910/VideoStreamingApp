@@ -257,6 +257,7 @@ const Home = () => {
         <SideBarContainer>
           <Sidebar />
         </SideBarContainer>
+
         <RightSectionContainer theme={isDarkTheme}>
           {!close && bannerElement()}
           <ViewsContainer>{renderVideoContainer()}</ViewsContainer>

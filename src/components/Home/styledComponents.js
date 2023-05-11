@@ -40,7 +40,6 @@ export const MainContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: ${props => props.height};
-  overflow-y: auto;
   padding: 0px;
   background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
 `
@@ -48,6 +47,7 @@ export const MainContainer = styled.div`
 export const SubContainer = styled.div`
   display: flex;
   width: 100%;
+  height: 90vh;
 `
 export const RightSectionContainer = styled.div`
   display: flex;
@@ -68,7 +68,11 @@ export const LoadingContainer = styled.div`
 `
 
 /* Unordered List to Display Video Components */
-export const ViewsContainer = styled.div``
+export const ViewsContainer = styled.div`
+  overflow-y: scroll;
+  background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
+`
+
 export const UnorderedList = styled.ul`
   display: flex;
   justify-content: space-around;
@@ -76,10 +80,10 @@ export const UnorderedList = styled.ul`
   flex: 1;
   margin: 0px;
   max-height: ${props => (props.close ? '90vh' : '70vh')};
-  overflow-y: scroll;
   flex-wrap: wrap;
   padding-top: 10px;
 `
+
 export const VideosDisplaySection = styled.div`
   background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
   flex: 1;
@@ -133,7 +137,7 @@ export const FailureContainer = styled.div`
 
 export const FailureImage = styled.img`
   height: 60%;
-  wdith: 60%;
+  width: 60%;
 `
 
 export const Heading = styled.h1``
