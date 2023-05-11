@@ -1,9 +1,7 @@
 import {useState, useEffect, useContext} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {Link} from 'react-router-dom'
-import {formatDistanceToNow} from 'date-fns'
-import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
+import {AiOutlineClose} from 'react-icons/ai'
 
 import ThemeContext from '../../context/ThemeContext/ThemeContext'
 import VideoComponent from '../VideoComponent'
@@ -204,7 +202,7 @@ const Home = () => {
       {apiResponse.data.length === 0 ? (
         onEmptyView()
       ) : (
-        <UnorderedList close={close}>
+        <UnorderedList theme={isDarkTheme} close={close}>
           {apiResponse.data.map(eachData => (
             <VideoComponent key={eachData.id} reqDetails={eachData} />
           ))}

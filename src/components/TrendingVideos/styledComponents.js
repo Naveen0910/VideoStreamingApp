@@ -183,11 +183,11 @@ export const LoadingContainer = styled.div`
 export const Para = styled.p``
 
 export const VideosContainer = styled.div`
-  width: 70%;
+  width: 80%;
   padding-top: 0;
 `
 export const SideBarContainer = styled.div`
-  width: 30%;
+  width: 20%;
   height: 90vh;
 `
 export const TrendingVideosContainer = styled.div``

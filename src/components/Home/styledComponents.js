@@ -52,7 +52,7 @@ export const SubContainer = styled.div`
 export const RightSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 80%;
   background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
 `
 
@@ -70,7 +70,6 @@ export const LoadingContainer = styled.div`
 /* Unordered List to Display Video Components */
 export const ViewsContainer = styled.div`
   overflow-y: scroll;
-  background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
 `
 
 export const UnorderedList = styled.ul`
@@ -82,6 +81,7 @@ export const UnorderedList = styled.ul`
   max-height: ${props => (props.close ? '90vh' : '70vh')};
   flex-wrap: wrap;
   padding-top: 10px;
+  background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
 `
 
 export const VideosDisplaySection = styled.div`

@@ -18,7 +18,7 @@ export const FailureContainer = styled.div`
 
 export const FailureImage = styled.img`
   height: 60%;
-  wdith: 60%;
+  width: 60%;
 `
 export const Heading = styled.h1``
 
