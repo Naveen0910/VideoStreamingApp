@@ -1,6 +1,5 @@
 import {useContext, useState} from 'react'
 import {FaMoon} from 'react-icons/fa'
-import Popup from 'reactjs-popup'
 import Cookies from 'js-cookie'
 import {useHistory} from 'react-router-dom'
 
@@ -12,8 +11,11 @@ import {
   Logo,
   ThemeButton,
   LightThemeIcon,
-  PopUpContainer,
   StyledPopup,
+  LogoutContainer,
+  LogoutButtonContainer,
+  Button,
+  Para,
 } from './styledComponents'
 import {CustomLink} from '../GamingVideos/styledComponents'
 
@@ -34,22 +36,30 @@ const Navbar = () => {
 
   return (
     <>
-      <PopUpContainer>
-        <StyledPopup
-          theme={isDarkTheme}
-          open={isOpen}
-          onClose={() => setIsOpen(false)}
-          modal
-        >
-          {close => (
-            <div>
-              <p>Are you sure you want to log out?</p>
-              <button onClick={handleLogout}>Confirm</button>
-              <button onClick={() => setIsOpen(false)}>Cancel</button>
-            </div>
-          )}
-        </StyledPopup>
-      </PopUpContainer>
+      <StyledPopup
+        theme={isDarkTheme}
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        modal
+        contentStyle={{
+          maxWidth: '400px',
+          padding: '24px',
+          backgroundColor: isDarkTheme ? '#0f0f0f' : '#f9f9f9',
+          borderRadius: '8px',
+          border: isDarkTheme ? '0.5px solid #fff' : '0.5px solid #0f0f0f',
+        }}
+      >
+        {close => (
+          <LogoutContainer>
+            <Para theme={isDarkTheme}>Are you sure you want to log out?</Para>
+            <LogoutButtonContainer>
+              <Button onClick={handleLogout}>Confirm</Button>
+              <Button onClick={() => setIsOpen(false)}>Cancel</Button>
+            </LogoutButtonContainer>
+          </LogoutContainer>
+        )}
+      </StyledPopup>
+
       <NavContainer theme={isDarkTheme}>
         <CustomLink to="/">
           <Logo

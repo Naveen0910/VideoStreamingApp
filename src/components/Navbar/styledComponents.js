@@ -10,8 +10,6 @@ export const StyledPopup = styled(Popup)`
   border: 2px solid red;
 `
 
-export const PopUpContainer = styled.div``
-
 export const NavContainer = styled.ul`
   background-color: ${props => (props.theme === true ? '#0f0f0f' : '#ffff')};
   display: flex;
@@ -48,4 +46,24 @@ export const ThemeButton = styled.button`
 export const LightThemeIcon = styled(FiSun)`
   color: #fff;
   background-color: '#fff';
+`
+export const LogoutButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin-top: 20px;
+`
+export const LogoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 12vh;
+`
+export const Button = styled.button`
+  :hover {
+    background-color: #3b82f6;
+    color: white;
+  }
+`
+export const Para = styled.p`
+  color: ${props => (props.theme === true ? '#ffff' : '#0f0f0f')};
 `
