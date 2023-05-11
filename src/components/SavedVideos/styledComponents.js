@@ -29,7 +29,7 @@ export const ThumbnailContainer = styled.div`
 
 export const Thumbnail = styled.img`
   width: 100%;
-  height: auto;
+  height: 100px;
 `
 
 export const VideoInfoContainer = styled.div`
