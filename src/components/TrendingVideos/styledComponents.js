@@ -18,6 +18,8 @@ export const StyledUnorderedList = styled.ul`
   max-height: 72vh;
   overflow-y: scroll;
   width: 100%;
+  margin-bottom: 0;
+  background-color: ${props => (props.theme === true ? '#181818' : '')};
 `
 export const CustomLink = styled(Link)`
     color: #333;
@@ -32,16 +34,20 @@ export const StyledListItem = styled.li`
   margin-bottom: 32px;
   font-family: 'Roboto';
   border-radius: 8px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid;
 `
 
 export const StyledThumbnail = styled.img`
   width: 200px;
   height: 20vh;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 `
 
 export const StyledInfoContainer = styled.div`
   padding: 16px;
+
+  color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
 `
 
 export const StyledTitle = styled.h1`
@@ -49,14 +55,16 @@ export const StyledTitle = styled.h1`
   margin-bottom: 8px;
   font-size: 18px;
   font-weight: 500;
-  color: black;
+
+  color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
 `
 
 export const StyledChannelName = styled.p`
   margin: 0;
   margin-bottom: 8px;
   font-size: 14px;
-  color: black;
+
+  color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
 `
 
 export const StyledYearAndViews = styled.div`
@@ -68,7 +76,8 @@ export const StyledViewCount = styled.p`
   margin: 0;
   font-size: 14px;
   font-weight: 500;
-  color: black;
+
+  color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
 `
 
 export const StyledPublishedDate = styled.p`
@@ -139,18 +148,22 @@ export const StyledTrendingContainer = styled.div`
   margin-top: 2rem;
   padding-top: 0;
   margin-top: 0;
+  background-color: ${props => (props.theme === true ? '#181818' : '')};
 `
 
 export const StyledTrendingTitle = styled.h1`
   display: flex;
   align-items: center;
-  color: black;
+  background-color: ${props => (props.theme === true ? '#181818' : '')};
+  color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
   font-size: 15px;
   margin: 0;
 `
 export const ViewContainer = styled.div`
   display: flex;
   width: 100%;
+  padding-bottom: 0;
+  background-color: ${props => (props.theme === true ? '#181818' : '')};
 `
 
 export const FailureContainer = styled.div`
@@ -185,6 +198,7 @@ export const Para = styled.p``
 export const VideosContainer = styled.div`
   width: 80%;
   padding-top: 0;
+  margin-bottom: 0px;
 `
 export const SideBarContainer = styled.div`
   width: 20%;

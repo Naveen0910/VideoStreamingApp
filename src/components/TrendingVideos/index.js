@@ -16,7 +16,6 @@ import {
   StyledViewCount,
   StyledPublishedDate,
   StyledTrendingContainer,
-  StyledTrendingHeader,
   TrendingVideosContainer,
   StyledTrendingTitle,
   ViewContainer,
@@ -51,7 +50,7 @@ const TrendingVideos = () => {
   const {isDarkTheme} = useContext(ThemeContext)
 
   const videoComponent = () => (
-    <StyledUnorderedList>
+    <StyledUnorderedList theme={isDarkTheme}>
       {fetchedData.map(data => (
         <StyledListItem key={data.id}>
           <CustomLink to={`/videos/${data.id}`}>
@@ -61,12 +60,20 @@ const TrendingVideos = () => {
               src={data.thumbNailUrl}
             />
             <StyledInfoContainer>
-              <StyledTitle className="trend-title">{data.title}</StyledTitle>
-              <StyledChannelName className="trend-channel-name">
+              <StyledTitle theme={isDarkTheme} className="trend-title">
+                {data.title}
+              </StyledTitle>
+              <StyledChannelName
+                theme={isDarkTheme}
+                className="trend-channel-name"
+              >
                 {data.channelName}
               </StyledChannelName>
               <StyledYearAndViews>
-                <StyledViewCount className="trend-viewcount">
+                <StyledViewCount
+                  theme={isDarkTheme}
+                  className="trend-viewcount"
+                >
                   {data.viewCount} views
                 </StyledViewCount>
                 <p>.</p>
@@ -149,8 +156,8 @@ const TrendingVideos = () => {
 
   const renderSuccessView = () => (
     <>
-      <StyledTrendingContainer>
-        <StyledTrendingTitle>
+      <StyledTrendingContainer theme={isDarkTheme}>
+        <StyledTrendingTitle theme={isDarkTheme}>
           <Firelogo />
           <h1>Trending Videos</h1>
         </StyledTrendingTitle>
@@ -174,7 +181,7 @@ const TrendingVideos = () => {
   return (
     <>
       <Navbar />
-      <ViewContainer>
+      <ViewContainer theme={isDarkTheme}>
         <SideBarContainer>
           <Sidebar />
         </SideBarContainer>
