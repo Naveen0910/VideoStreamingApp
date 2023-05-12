@@ -38,4 +38,8 @@ export const SideBarContainer = styled.div`
 export const BottomBarContainer = styled.div`
   height: 10vh;
   width: 100%;
+  display: none;
+  @media screen and (max-width: 576px) {
+    display: block;
+  }
 `

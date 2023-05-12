@@ -54,6 +54,10 @@ export const RightSectionContainer = styled.div`
   flex-direction: column;
   width: 80%;
   background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
 `
 
 /* Views Container */

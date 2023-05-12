@@ -7,6 +7,7 @@ import ThemeContext from '../../context/ThemeContext/ThemeContext'
 import VideoComponent from '../VideoComponent'
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
+import Bottombar from '../Bottombar'
 import {
   Banner,
   Logo,
@@ -33,6 +34,7 @@ import {
   Magnifier,
 } from './styledComponents'
 import {SideBarContainer} from '../TrendingVideos/styledComponents'
+import {BottomBarContainer} from '../Containers/styledComponents'
 
 const fetchConstants = {
   initial: 'INITIAL',
@@ -261,6 +263,9 @@ const Home = () => {
           <ViewsContainer>{renderVideoContainer()}</ViewsContainer>
         </RightSectionContainer>
       </SubContainer>
+      <BottomBarContainer>
+        <Bottombar />
+      </BottomBarContainer>
     </MainContainer>
   )
 }

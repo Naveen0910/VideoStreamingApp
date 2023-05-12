@@ -203,5 +203,9 @@ export const VideosContainer = styled.div`
 export const SideBarContainer = styled.div`
   width: 20%;
   height: 90vh;
+  display: none;
+  @media screen and (min-width: 576px) {
+    display: block;
+  }
 `
 export const TrendingVideosContainer = styled.div``
