@@ -11,6 +11,10 @@ export const MainContainer = styled.div`
   justify-content: space-between;
   height: 100%;
   width: 100%;
+
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
 `
 
 export const ButtonContainer = styled.ul`

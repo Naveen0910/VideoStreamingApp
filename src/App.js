@@ -12,12 +12,14 @@ import VideoItemDetails from './components/VideoItemDetails'
 import SavedVideos from './components/SavedVideos'
 import {ThemeProvider} from './context/ThemeContext/ThemeContext'
 import NotFoundRoute from './components/NotFoundRoute'
+import Containers from './components/Containers'
 
 const App = () => (
   <VideosProvider>
     <ThemeProvider>
       <Switch>
         <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/c" component={Containers} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/trending" component={TrendingVideos} />
         <ProtectedRoute exact path="/gaming" component={GamingVideos} />
