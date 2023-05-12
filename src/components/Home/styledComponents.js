@@ -77,15 +77,25 @@ export const ViewsContainer = styled.div`
 `
 
 export const UnorderedList = styled.ul`
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  flex: 1;
-  margin: 0px;
-  max-height: ${props => (props.close ? '90vh' : '70vh')};
-  flex-wrap: wrap;
-  padding-top: 10px;
-  background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
+  @media screen and (min-width: 577px) {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0px;
+    max-height: ${props => (props.close ? '90vh' : '70vh')};
+    padding-top: 10px;
+    background-color: ${props =>
+      props.theme === true ? '#181818' : '#f1f1f1'};
+  }
+
+  @media screen and (max-width: 576px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 10px;
+    padding-left: 0;
+  }
 `
 
 export const VideosDisplaySection = styled.div`
@@ -98,18 +108,34 @@ export const SearchContainer = styled.div`
   display: flex;
   margin-top: 10px;
   margin-left: 20px;
+  @media screen and (max-width: 567px) {
+    margin-left: 0;
+  }
 `
 
 export const Searchbar = styled.input`
   background-color: ${props => (props.theme === true ? '#181818' : '#f1f1f1')};
   border-color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
-  width: 30%;
-  height: 35px;
-  padding: 10px;
-  font-size: 15px;
-  border-radius: 15px;
-  border-right: none;
-  outline: none;
+
+  @media screen and (min-width: 576px) {
+    width: 30%;
+    height: 35px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 15px;
+    border-right: none;
+    outline: none;
+  }
+
+  @media screen and (max-width: 567px) {
+    width: 60%;
+    height: 35px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 15px;
+    outline: none;
+    color: ${props => (props.theme === true ? '#ffffff' : '#181818')};
+  }
 `
 
 export const SearchButton = styled.button`
@@ -126,6 +152,12 @@ export const SearchButton = styled.button`
   border-bottom-right-radius: 15px;
   border-left: none;
   margin-left: -40px;
+
+  @media screen and (max-width: 567px) {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
 `
 export const Magnifier = styled(AiOutlineSearch)`
   color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};

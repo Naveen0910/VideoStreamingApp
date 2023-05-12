@@ -1,40 +1,62 @@
 import {Link} from 'react-router-dom'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 export const StyledVideoComponent = styled.li`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  list-style-type: none;
-  max-width: 30%;
-  max-height: 30%;
-  background-color: ${props => (props.theme === true ? '#181818' : '#ffff')};
+  @media screen and (min-width: 577px) {
+    max-width: 30%;
+    max-height: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    list-style-type: none;
+    background-color: ${props => (props.theme === true ? ' #0f0f0f' : '#ffff')};
+  }
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    background-color: ${props => (props.theme === true ? ' #0f0f0f' : '#ffff')};
+    margin-right: 0;
+  }
 `
 export const CustomLink = styled(Link)`
-  color: ${props => (props.theme === true ? '#ffffff' : '#181818')};
+  color: ${props => (props.theme === true ? '#ffffff' : ' #0f0f0f')};
     text-decoration: none;
     }
   `
 
 export const ThumbnailSection = styled.div`
   width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  position: relative;
+  height: 50%;
 `
 
 export const Thumbnail = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  @media screen and (min-width: 577px) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 576px) {
+    height: 200px;
+    width: 100%;
+  }
 `
 
 export const VideoDescriptionSection = styled.div`
-  display: flex;
-  margin-top: 12px;
+  @media screen and (min-width: 577px) {
+    display: flex;
+    margin-top: 12px;
+  }
+
+  @media screen and (max-width: 576px) {
+    display: flex;
+    margin-top: 22px;
+  }
 `
 
 export const ChannelProfile = styled.div`
