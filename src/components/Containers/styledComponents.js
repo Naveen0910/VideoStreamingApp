@@ -41,5 +41,7 @@ export const BottomBarContainer = styled.div`
   display: none;
   @media screen and (max-width: 576px) {
     display: block;
+    height: 8vh;
+    margin: 0px;
   }
 `

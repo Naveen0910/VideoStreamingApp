@@ -45,9 +45,16 @@ export const MainContainer = styled.div`
 `
 
 export const SubContainer = styled.div`
-  display: flex;
-  width: 100%;
-  height: 90vh;
+  @media screen and (min-width: 577px) {
+    display: flex;
+    width: 100%;
+    height: 90vh;
+  }
+
+  @media screen and (max-width: 567px) {
+    height: 80vh;
+    overflow-y: scroll;
+  }
 `
 export const RightSectionContainer = styled.div`
   display: flex;
@@ -57,6 +64,7 @@ export const RightSectionContainer = styled.div`
 
   @media screen and (max-width: 576px) {
     width: 100%;
+    height: 100%;
   }
 `
 
