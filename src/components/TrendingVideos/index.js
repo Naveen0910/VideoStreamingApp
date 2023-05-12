@@ -30,6 +30,8 @@ import {
   SideBarContainer,
 } from './styledComponents'
 import ThemeContext from '../../context/ThemeContext/ThemeContext'
+import {MainContainer, BottomBarContainer} from '../Containers/styledComponents'
+import Bottombar from '../Bottombar'
 
 const failedViewImage =
   'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
@@ -179,7 +181,7 @@ const TrendingVideos = () => {
     }
   }
   return (
-    <>
+    <MainContainer>
       <Navbar />
       <ViewContainer theme={isDarkTheme}>
         <SideBarContainer>
@@ -187,7 +189,10 @@ const TrendingVideos = () => {
         </SideBarContainer>
         <VideosContainer> {renderTrendingView()}</VideosContainer>
       </ViewContainer>
-    </>
+      <BottomBarContainer>
+        <Bottombar />
+      </BottomBarContainer>
+    </MainContainer>
   )
 }
 

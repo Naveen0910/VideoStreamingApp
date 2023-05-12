@@ -20,6 +20,10 @@ export const StyledUnorderedList = styled.ul`
   width: 100%;
   margin-bottom: 0;
   background-color: ${props => (props.theme === true ? '#181818' : '')};
+
+  @media screen and (max-width: 567px) {
+    padding: 0;
+  }
 `
 export const CustomLink = styled(Link)`
     color: #333;
@@ -29,25 +33,49 @@ export const CustomLink = styled(Link)`
   `
 
 export const StyledListItem = styled.li`
-  display: flex;
-  width: 100%;
-  margin-bottom: 32px;
-  font-family: 'Roboto';
-  border-radius: 8px;
-  border: 1px solid;
+  @media screen and (min-width: 568px) {
+    display: flex;
+    width: 100%;
+    margin-bottom: 32px;
+    font-family: 'Roboto';
+    border-radius: 8px;
+    border: 1px solid;
+  }
+
+  @media screen and (max-width: 567px) {
+    display: flex;
+    width: 100%;
+    font-family: 'Roboto';
+    margin-bottom: 5px;
+    height: 30vh;
+  }
 `
 
 export const StyledThumbnail = styled.img`
-  width: 200px;
-  height: 20vh;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  @media screen and (min-width: 568px) {
+    width: 200px;
+    height: 20vh;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  @media screen and (max-width: 567px) {
+    width: 150px;
+    height: 15vh;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
 `
 
 export const StyledInfoContainer = styled.div`
   padding: 16px;
 
   color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
+
+  @media screen and (max-width: 567px) {
+    height: 10vh;
+    margin: 0px;
+  }
 `
 
 export const StyledTitle = styled.h1`
@@ -57,19 +85,34 @@ export const StyledTitle = styled.h1`
   font-weight: 500;
 
   color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
+
+  @media screen and (max-width: 567px) {
+    font-size: 12px;
+    border: 2px solid red;
+    margin-bottom: 4px;
+  }
 `
 
 export const StyledChannelName = styled.p`
-  margin: 0;
-  margin-bottom: 8px;
-  font-size: 14px;
+  @media screen and (min-width: 568px) {
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: 14px;
 
-  color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
+    color: ${props => (props.theme !== true ? '#181818' : '#f1f1f1')};
+  }
+  @media screen and (max-width: 567px) {
+    margin-bottom: 5px;
+  }
 `
 
 export const StyledYearAndViews = styled.div`
   display: flex;
   align-items: center;
+  @media screen and (max-width: 567px) {
+    margin: 0;
+    padding: 0;
+  }
 `
 
 export const StyledViewCount = styled.p`
@@ -196,9 +239,17 @@ export const LoadingContainer = styled.div`
 export const Para = styled.p``
 
 export const VideosContainer = styled.div`
-  width: 80%;
-  padding-top: 0;
-  margin-bottom: 0px;
+  @media screen and (min-width: 568px) {
+    width: 80%;
+    padding-top: 0;
+    margin-bottom: 0px;
+  }
+
+  @media screen and (max-width: 567px) {
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 0px;
+  }
 `
 export const SideBarContainer = styled.div`
   width: 20%;
